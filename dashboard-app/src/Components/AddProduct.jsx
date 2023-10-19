@@ -1,21 +1,20 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-
-const AddProduct =()=> {
+const AddProduct = () => {
   const [productData, setProductData] = useState({
-    name: '',
-    description: '',
-    price: 0,
-    image: null, 
+    productName: '', 
+    productDesc: '', 
+    productPrice: 0, 
   })
 
+
+
   const handleInputChange = (e) => {
-    const { name, value, type, files } = e.target
-    const newValue = type === 'file' ? files[0] : value
+    const { name, value } = e.target
     setProductData({
       ...productData,
-      [name]: newValue,
+      [name]: value,
     })
   }
 
@@ -23,21 +22,30 @@ const AddProduct =()=> {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
+  
+     
+
+    const data = {
+      productDesc: productData.productDesc,
+      productName: productData.productName,
+      productPrice: productData.productPrice
+    }
+    
+ 
+    
     try {
-      const response = await axios.post('/api/products', productData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+      const response = await axios.post('http://localhost:4000/apiproduct', data, {
+        headers: { 'Content-Type': 'application/json' }
       })
+      
       console.log('Product added:', response.data)
       setProductData({
-        name: '',
-        description: '',
-        price: 0,
-        image: null,
+        productName: '',
+        productDesc: '', 
+        productPrice: 0,
       })
     } catch (error) {
-
       console.error('Error:', error)
     }
   }
@@ -46,20 +54,17 @@ const AddProduct =()=> {
     <form onSubmit={handleSubmit}>
       <div>
         <label>Name:</label>
-        <input type="text" name="name" value={productData.name} onChange={handleInputChange} />
+        <input type="text" name="productName" value={productData.productName} onChange={handleInputChange} />
       </div>
       <div>
         <label>Description:</label>
-        <textarea name="description" value={productData.description} onChange={handleInputChange} />
+        <textarea name="productDesc" value={productData.productDesc} onChange={handleInputChange} />
       </div>
       <div>
         <label>Price:</label>
-        <input type="number" name="price" value={productData.price} onChange={handleInputChange} />
+        <input type="number" name="productPrice" value={productData.productPrice} onChange={handleInputChange} />
       </div>
-      <div>
-        <label>Image:</label>
-        <input type="file" name="image" onChange={handleImageChange} />
-      </div>
+
       <button type="submit">Add Product</button>
     </form>
   )
