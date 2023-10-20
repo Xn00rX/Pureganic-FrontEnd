@@ -5,19 +5,43 @@ import { Routes, Route, Link } from 'react-router-dom';
 import Navbar from './Components/Navbar'
 import Home from './Pages/Home'
 import Login from './Pages/Login'
-import Dumy from './Pages/Dumy'
+import Register from './Pages/Register'
+import { CheckSession } from './services/Auth'
+import {  useEffect } from 'react'
+
+import Hello from './Pages/Hello';
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  const [user, setUser] = useState(null)
+
+  const handleLogOut = () => {
+   
+    setUser(null)
+    localStorage.clear()
+  }
+
+  const checkToken = async () => {
+    const user = await CheckSession()
+    setUser(user)
+
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      checkToken()
+    }
+  }, [])
   return (
     <div>
-      <Navbar />
+      <Navbar user={user}
+        handleLogOut={handleLogOut} />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<Login />} />
-          <Route path="/register" element={<Dumy />} />
+          <Route path="/signin" element={<Login setUser={setUser} />} />
+          <Route path="/register" element={< Register />} />
         </Routes>
       </main>
     </div>
