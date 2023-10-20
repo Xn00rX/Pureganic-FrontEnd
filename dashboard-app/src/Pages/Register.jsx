@@ -1,81 +1,85 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const Register= ()=> {
-
+const Register = () => {
   const [formData, setFormData] = useState({
-    profileImage: null,
     firstName: '',
     lastName: '',
     email: '',
-    userType: 'buyer',
-    dateOfBirth: '',
+    image: null,
+    phoneNumber: '',
+    seller: 'buyer',
     gender: 'male',
     password: '',
     confirmPassword: '',
+  });
 
-  })
+  const [passwordError, setPasswordError] = useState('');
+  const [registrationSuccess, setRegistrationSuccess] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
-  const [passwordError, setPasswordError] = useState('')
   useEffect(() => {
     if (formData.password !== formData.confirmPassword) {
       setPasswordError("Passwords don't match");
     } else {
       setPasswordError('');
     }
-  }, [formData.password, formData.confirmPassword , formData])
-
+  }, [formData.password, formData.confirmPassword]);
 
   const handleInputChange = (e) => {
-    const { name, value, type, files } = e.target
-    const newValue = type === 'file' ? files[0] : value
+    const { name, value } = e.target;
+
+    if (name === 'image') {
+      setSelectedFile(e.target.files[0]);
+    }
+
     setFormData({
       ...formData,
-      [name]: newValue,
-    })
-  }
+      [name]: value,
+    });
+  };
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const response = await axios.post('/api/register', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      console.log('User Registered added:', response.data)
+      const formData = new FormData();
+      formData.append('image', selectedFile);
+
+      const response = await axios.post('http://localhost:4000/apiregister', formData);
+      console.log('User Registered:', response.data);
+      setRegistrationSuccess('Registration successful');
+
       setFormData({
-        profileImage: null,
         firstName: '',
         lastName: '',
         email: '',
-        userType: 'buyer',
-        dateOfBirth: '',
+        image: null,
+        phoneNumber: '',
+        seller: 'buyer',
         gender: 'male',
         password: '',
         confirmPassword: '',
-      })
+      });
     } catch (error) {
-
-      console.error('Error:', error)
+      console.error('Error:', error);
+      setRegistrationSuccess('Registration failed');
     }
-  }
-  
+  };
+
   return (
-    <div>
+    <div className="registration-form">
       <h1>Registration</h1>
-      <form>
-      <input
-        type="file"
-        name="profileImage"
-        accept="image/*"
-        onChange={handleInputChange}
-      />
+      {registrationSuccess && <p>{registrationSuccess}</p>}
+      <form onSubmit={handleSubmit}>
+        <input type="file" name="image" onChange={handleInputChange} />
+
         <input
           type="text"
           name="firstName"
           placeholder="First Name"
           value={formData.firstName}
           onChange={handleInputChange}
+          required
         />
         <input
           type="text"
@@ -83,6 +87,7 @@ const Register= ()=> {
           placeholder="Last Name"
           value={formData.lastName}
           onChange={handleInputChange}
+          required
         />
         <input
           type="email"
@@ -90,29 +95,23 @@ const Register= ()=> {
           placeholder="Email"
           value={formData.email}
           onChange={handleInputChange}
+          required
         />
-        <select
-          name="userType"
-          value={formData.userType}
+        <input
+          type="text"
+          name="phoneNumber"
+          placeholder="Enter your phone number"
+          value={formData.phoneNumber}
           onChange={handleInputChange}
-        >
+          required
+        />
+        <select name="seller" value={formData.seller} onChange={handleInputChange}>
           <option value="buyer">Buyer</option>
           <option value="seller">Seller</option>
         </select>
-        <input
-          type="date"
-          name="dateOfBirth"
-          value={formData.dateOfBirth}
-          onChange={handleInputChange}
-        />
-        <select
-          name="gender"
-          value={formData.gender}
-          onChange={handleInputChange}
-        >
+        <select name="gender" value={formData.gender} onChange={handleInputChange}>
           <option value="male">Male</option>
           <option value="female">Female</option>
-          <option value="other">Other</option>
         </select>
         <input
           type="password"
@@ -120,6 +119,7 @@ const Register= ()=> {
           placeholder="Password"
           value={formData.password}
           onChange={handleInputChange}
+          required
         />
         <input
           type="password"
@@ -127,15 +127,14 @@ const Register= ()=> {
           placeholder="Confirm Password"
           value={formData.confirmPassword}
           onChange={handleInputChange}
+          required
         />
         {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
-       
-        <button type="button" onClick={handleSubmit}>
-          Register
-        </button>
+
+        <button type="submit">Register</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Register
+export default Register;
