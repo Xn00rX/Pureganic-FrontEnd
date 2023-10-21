@@ -1,13 +1,8 @@
-import AddProduct from "../Components/AddProduct"
-
-
-const Home = () =>{
-return(
-<div className="Home">
-  <AddProduct/>
-  <button> Login </button>
-  <button> Sign Up </button>
-</div >
-)
+const Home = () => {
+  return (
+    <div>
+      <h1> Welcome to our website </h1>
+    </div>
+  )
 }
 export default Home
