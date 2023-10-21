@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 const Navbar = ({ user, handleLogOut }) => {
   const userOptions = user && (
-    <nav>
+    <nav className="Navbar">
       <h3>Welcome {user.username}!</h3>
       <Link to="/">Home</Link>
       <Link to="/products">Products</Link>

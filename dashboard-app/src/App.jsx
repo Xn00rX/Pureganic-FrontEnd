@@ -1,4 +1,5 @@
 
+
 import { useState } from 'react'
 import './App.css'
 import { Routes, Route, Link } from 'react-router-dom';
@@ -6,10 +7,12 @@ import Navbar from './Components/Navbar'
 import Home from './Pages/Home'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
+import AddProduct from './Components/AddProduct'
 import { CheckSession } from './services/Auth'
 import {  useEffect } from 'react'
 import Userprofile from './Pages/Userprofile';
 import Hello from './Pages/Hello';
+ab8d76f78e2838970f372a4acba68b87120d4507
 
 function App() {
 
@@ -35,11 +38,14 @@ function App() {
   }, [])
   return (
     <div>
+<header>
       <Navbar user={user}
         handleLogOut={handleLogOut} />
+        </header>
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/addproducts" element={<AddProduct />} />
           <Route path="/signin" element={<Login setUser={setUser} />} />
           <Route path="/register" element={< Register />} />
           <Route path="/userprofile" element={< Userprofile user={user} />} />
