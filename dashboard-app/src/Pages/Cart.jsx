@@ -8,8 +8,8 @@ const Cart = () => {
   let { id } = useParams()
   const getCartProducts = async () => {
     const response = await axios.get(`http://localhost:4000/cart/${id}`)
-    console.log(response.data)
-    setcart(response.data)
+    console.log(response)
+    // setcart(response.data)
   }
 
   useEffect(() => {

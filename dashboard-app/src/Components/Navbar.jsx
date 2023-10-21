@@ -1,11 +1,10 @@
-const Navbar = ()=>{
+import { Link } from "react-router-dom"
+const Navbar = () => {
   return (
-<nav className="Navbar">
-<a href="/home/">Home</a> |
-<a href="/products/">Products</a> |
-<a href="/login/">Login</a> |
-<a href="/register/">Register</a>
-</nav>
+    <nav className="Navbar">
+      <Link to="/">Home</Link> |<Link to="/api/products">Products</Link> |
+      <Link to="/cart/:id">Cart</Link> |
+    </nav>
   )
 }
 

@@ -4,11 +4,7 @@ import Cart from "../Pages/Cart"
 const Home = () => {
   return (
     <div className="Home">
-      {/* <AddProduct/>
-  <button> Login </button>
-  <button> Sign Up </button> */}
-      {/* <Productlist /> */}
-      <Cart />
+      <h1>Homepage</h1>
     </div>
   )
 }
