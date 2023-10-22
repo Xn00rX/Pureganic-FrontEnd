@@ -4,14 +4,17 @@ import axios from 'axios'
 const AddCategory = () => {
   const [categoryData, setCategoryData] = useState({
     catgName: '',
-    catgDesc: ''
+    catgDesc: '',
+    catgImage: null
   })
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value, type, files } = e.target
+    const newValue = type === 'file' ? files[0] : value
+
     setCategoryData({
       ...categoryData,
-      [name]: value
+      [name]: newValue
     })
   }
 
@@ -20,7 +23,8 @@ const AddCategory = () => {
 
     const data = {
       catgDesc: categoryData.catgDesc,
-      catgName: categoryData.catgName
+      catgName: categoryData.catgName,
+      catgImage: categoryData.catgImage
     }
 
     try {
@@ -28,14 +32,15 @@ const AddCategory = () => {
         'http://localhost:4000/apicategory',
         data,
         {
-          headers: { 'Content-Type': 'application/json' }
+          headers: { 'Content-Type': 'multipart/form-data' }
         }
       )
 
       console.log('Category added:', response.data)
       setProductData({
         productName: '',
-        productDesc: ''
+        productDesc: '',
+        catgImage: null
       })
     } catch (error) {
       console.error('Error:', error)
@@ -63,6 +68,16 @@ const AddCategory = () => {
               name="catgDesc"
               className="form-control"
               value={categoryData.catgDesc}
+              onChange={handleInputChange}
+            />
+          </div>
+
+          <div>
+            <label>Image:</label>
+            <input
+              type="file"
+              name="catgImage"
+              accept="image/*"
               onChange={handleInputChange}
             />
           </div>
