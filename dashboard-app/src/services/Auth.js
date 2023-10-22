@@ -21,12 +21,15 @@ export const RegisterUser = async (data) => {
   }
 }
 
+
+
 export const CheckSession = async () => {
   try {
-   
     const res = await Client.get('/session')
     return res.data
   } catch (error) {
     throw error
   }
 }
+
+

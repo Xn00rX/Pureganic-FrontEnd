@@ -27,6 +27,7 @@ const Login = ({ setUser }) => {
     try {
       const payload = await SignInUser(formData)
       console.log('User Logged In:', payload)
+      console.log(payload.userimage)
       setFormData({
         email: '',
         password: '',
@@ -35,7 +36,7 @@ const Login = ({ setUser }) => {
       navigate('/products')
     } catch (error) {
       console.error('Error:', error)
-      setError('Login failed. Please check your credentials.')
+      setError('Login failed')
     } finally {
       setLoading(false)
     }

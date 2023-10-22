@@ -11,8 +11,8 @@ import AddProduct from './Components/AddProduct'
 import { CheckSession } from './services/Auth'
 import {  useEffect } from 'react'
 import Userprofile from './Pages/Userprofile';
-import Hello from './Pages/Hello';
-ab8d76f78e2838970f372a4acba68b87120d4507
+
+
 
 function App() {
 
@@ -27,7 +27,6 @@ function App() {
   const checkToken = async () => {
     const user = await CheckSession()
     setUser(user)
-
   }
 
   useEffect(() => {
