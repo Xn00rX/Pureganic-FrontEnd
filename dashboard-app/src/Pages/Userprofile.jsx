@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom'
 
 const Userprofile = ({ user }) => {
-
-  const navigate = useNavigate()
+  let navigate = useNavigate()
   const [newUserData, setNewUserData] = useState({ ...user })
   const [isEditing, setIsEditing] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null)
@@ -13,7 +12,7 @@ const Userprofile = ({ user }) => {
     const { name, value } = e.target
     setNewUserData({
       ...newUserData,
-      [name]: value
+      [name]: value,
     })
   }
 
@@ -22,40 +21,38 @@ const Userprofile = ({ user }) => {
     setSelectedImage(imageFile)
   }
 
-  const handlePasswordChange = ()=>{
-    navigate("/passwordchange")
+  const handleUpdatePassword =()=>{
+    navigate('/passwordchange')
   }
 
-  const handleUpdateProfile = async () => {
+  const handleUpdateProfile = (e) => {
+    e.preventDefault()
     const formData = new FormData()
     formData.append('firstName', newUserData.firstName)
     formData.append('lastName', newUserData.lastName)
     formData.append('email', newUserData.email)
-
     if (selectedImage) {
       formData.append('image', selectedImage)
     }
 
-    try {
-      const response = await axios.post(`http://localhost:4000/updateprofile/${user.id}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+    const response = axios.post(`http://localhost:4000/updateprofile/${user.id}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+      .then((response) => {
+    
+        setIsEditing(false)
       })
-
-      setIsEditing(false)
-      // console.log(response.data)
-      // setNewUserData({ ...newUserData, ...response.data })
-      // console.log(setNewUserData)
-    } catch (error) {
-      console.error(error)
-    }
+      .catch((error) => {
+       
+      })
   }
 
   return (
     <div>
       {isEditing ? (
-        <form className='form'>
+        <div>
           <label htmlFor="firstName">First Name:</label>
           <input
             type="text"
@@ -85,14 +82,22 @@ const Userprofile = ({ user }) => {
             onChange={handleImageChange}
           />
           <button onClick={handleUpdateProfile}>Save</button>
-        </form>
+        </div>
       ) : (
         <div>
-          <img src={`http://localhost:4000/images/${user.userimage}`} height={150} width={100} alt="" />
+          {user?(
+<><img src={`http://localhost:4000/images/${user.userimage}`} height={150} width={100} alt="" />
           <h2>Email: {user.email}</h2>
           <h2>Name: {user.username}</h2>
           <button onClick={() => setIsEditing(true)}>Edit Profile</button>
-          <button onClick={handlePasswordChange}>Update Password</button>
+          <button onClick={handleUpdatePassword}>Change Password</button></>
+            
+          ):(<><h1>Null</h1></>)}
+          {/* <img src={`http://localhost:4000/images/${user.userimage}`} height={150} width={100} alt="" />
+          <h2>Email: {user.email}</h2>
+          <h2>Name: {user.username}</h2>
+          <button onClick={() => setIsEditing(true)}>Edit Profile</button>
+          <button onClick={handleUpdatePassword}>Change Password</button> */}
         </div>
       )}
     </div>

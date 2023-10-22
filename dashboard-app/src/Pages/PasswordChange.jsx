@@ -3,7 +3,6 @@ import firebase from '../services/firebase'
 import axios from 'axios'
 
 const PasswordChange = ({ user }) => {
-
   console.log(user)
   const [currentPassword, setCurrentPassword] = useState('')
   const [newPassword, setNewPassword] = useState('')
@@ -14,17 +13,16 @@ const PasswordChange = ({ user }) => {
   const handleVerifyOTP = () => {
     let recaptcha = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
       size: 'normal',
-      callback: function (response) {
-        
-      }
+      callback: function (response) {}
     })
 
-
     let number = user.phonenumber
-if (!number.toString().startsWith('+')) {
-  number = `+${number}`
-}
-    firebase.auth().signInWithPhoneNumber(number, recaptcha)
+    if (!number.toString().startsWith('+')) {
+      number = `+${number}`
+    }
+    firebase
+      .auth()
+      .signInWithPhoneNumber(number, recaptcha)
       .then(function (e) {
         let code = prompt('Enter the OTP')
         if (code === null) return
@@ -44,16 +42,17 @@ if (!number.toString().startsWith('+')) {
       setError('New password and confirm password must match.')
       return
     } else {
-      axios.post(`http://localhost:4000/updatepassword/${user.id}`, {
-        currentPassword,
-        newPassword,
-      })
-      .then((response) => {
-        console.log('Password updated successfully')
-      })
-      .catch((error) => {
-        console.error('Password update failed:', error)
-      })
+      axios
+        .post(`http://localhost:4000/updatepassword/${user.id}`, {
+          currentPassword,
+          newPassword
+        })
+        .then((response) => {
+          console.log('Password updated successfully')
+        })
+        .catch((error) => {
+          console.error('Password update failed:', error)
+        })
       setError('')
       setNewPassword('')
       setCurrentPassword('')
