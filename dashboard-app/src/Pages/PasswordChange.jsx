@@ -14,7 +14,9 @@ const PasswordChange = ({ user }) => {
   const handleVerifyOTP = () => {
     let recaptcha = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
       size: 'normal',
-      callback: function (response) {}
+      callback: function (response) {
+        
+      }
     })
 
 
@@ -36,7 +38,7 @@ if (!number.toString().startsWith('+')) {
       })
   }
 
-  const handleUpdatePassword = () => {
+  const handleUpdatePassword = (e) => {
     e.preventDefault()
     if (newPassword !== confirmNewPassword) {
       setError('New password and confirm password must match.')
