@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom"
 
 const Userprofile = ({ user }) => {
 
+  console.log(user.id)
+
   const navigate = useNavigate()
   const [newUserData, setNewUserData] = useState({ ...user })
   const [isEditing, setIsEditing] = useState(false)
@@ -37,7 +39,7 @@ const Userprofile = ({ user }) => {
     }
 
     try {
-      const response = await axios.post(`http://localhost:4000/updateprofile/${user.id}`, formData, {
+       await axios.post(`http://localhost:4000/updateprofile/${user.id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -100,3 +102,5 @@ const Userprofile = ({ user }) => {
 }
 
 export default Userprofile
+
+
