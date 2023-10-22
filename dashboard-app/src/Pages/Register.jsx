@@ -1,140 +1,144 @@
 import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+import { RegisterUser } from '../services/Auth'
 
-const Register= ()=> {
-
-  const [formData, setFormData] = useState({
-    profileImage: null,
+const Register = () => {
+  let navigate = useNavigate()
+  const [userData, setUserData] = useState({
     firstName: '',
     lastName: '',
     email: '',
-    userType: 'buyer',
-    dateOfBirth: '',
-    gender: 'male',
     password: '',
+    image: '',
+    gender: 'No Comments',
+    role: 'buyer', 
+    phonenumber: '',
     confirmPassword: '',
-
   })
 
   const [passwordError, setPasswordError] = useState('')
   useEffect(() => {
-    if (formData.password !== formData.confirmPassword) {
-      setPasswordError("Passwords don't match");
+    if (userData.password !== userData.confirmPassword) {
+      setPasswordError("Passwords don't match")
     } else {
-      setPasswordError('');
+      setPasswordError('')
     }
-  }, [formData.password, formData.confirmPassword , formData])
-
+  }, [userData.password, userData.confirmPassword])
+  
 
   const handleInputChange = (e) => {
-    const { name, value, type, files } = e.target
-    const newValue = type === 'file' ? files[0] : value
-    setFormData({
-      ...formData,
-      [name]: newValue,
+    const { name, value } = e.target
+    setUserData({
+      ...userData,
+      [name]: value,
+    })
+  }
+
+  const handleImageChange = (e) => {
+    setUserData({
+      ...userData,
+      image: e.target.files[0],
     })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    const formData = new FormData()
+    formData.append('firstName', userData.firstName)
+    formData.append('lastName', userData.lastName)
+    formData.append('email', userData.email)
+    formData.append('password', userData.password)
+    formData.append('image', userData.image)
+    formData.append('gender', userData.gender)
+    formData.append('role', userData.role)
+    formData.append('phonenumber', userData.phonenumber)
+
+    
     try {
-      const response = await axios.post('/api/register', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      console.log('User Registered added:', response.data)
-      setFormData({
-        profileImage: null,
+      const response = await RegisterUser(formData)
+      console.log('Response:', response)
+
+      setUserData({
         firstName: '',
         lastName: '',
         email: '',
-        userType: 'buyer',
-        dateOfBirth: '',
-        gender: 'male',
         password: '',
+        image:'',
+        gender: 'No Comments',
+        role: 'buyer',
+        phonenumber: 0,
         confirmPassword: '',
       })
     } catch (error) {
-
       console.error('Error:', error)
     }
   }
-  
+
   return (
-    <div>
-      <h1>Registration</h1>
-      <form>
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label>First Name:</label>
+        <input type="text" name="firstName" value={userData.firstName} onChange={handleInputChange} />
+      </div>
+      <div>
+        <label>Last Name:</label>
+        <input type="text" name="lastName" value={userData.lastName} onChange={handleInputChange} />
+      </div>
+      <div>
+        <label>Email:</label>
+        <input type="email" name="email" value={userData.email} onChange={handleInputChange} />
+      </div>
+      <div>
+        <label>Password:</label>
+        <input type="password" name="password" value={userData.password} onChange={handleInputChange} />
+      </div>
+      <div>
+      <label>Confirm Password:</label>
       <input
-        type="file"
-        name="profileImage"
-        accept="image/*"
-        onChange={handleInputChange}
-      />
-        <input
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          value={formData.firstName}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Last Name"
-          value={formData.lastName}
-          onChange={handleInputChange}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleInputChange}
-        />
-        <select
-          name="userType"
-          value={formData.userType}
-          onChange={handleInputChange}
-        >
-          <option value="buyer">Buyer</option>
-          <option value="seller">Seller</option>
-        </select>
-        <input
-          type="date"
-          name="dateOfBirth"
-          value={formData.dateOfBirth}
-          onChange={handleInputChange}
-        />
-        <select
-          name="gender"
-          value={formData.gender}
-          onChange={handleInputChange}
-        >
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select>
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleInputChange}
-        />
-        <input
           type="password"
           name="confirmPassword"
           placeholder="Confirm Password"
-          value={formData.confirmPassword}
+          value={userData.confirmPassword}
           onChange={handleInputChange}
+          required
         />
+        </div>
         {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
-       
-        <button type="button" onClick={handleSubmit}>
-          Register
-        </button>
-      </form>
-    </div>
+      <div>
+        <label>Upload Image:</label>
+        <input type="file" name="image" accept="image/*" onChange={handleImageChange} />
+      </div>
+      <div>
+        <label>Gender:</label>
+        <select name="gender" value={userData.gender} onChange={handleInputChange}>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="No Comments">No Comments</option>
+        </select>
+      </div>
+      <div>
+        <label>Role:</label>
+        <select name="role" value={userData.role} onChange={handleInputChange}>
+          <option value="buyer">Buyer</option>
+          <option value="seller">Seller</option>
+        </select>
+      </div>
+      <div>
+        <label>Phone Number:</label>
+        <input
+            type="tel"
+            name="phonenumber"
+            placeholder="+97330000000"
+            value={userData.phonenumber || "+973"}
+            onChange={handleInputChange}
+            pattern="\+973[0-9]{8}"
+            required
+        />
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
   )
 }
 
