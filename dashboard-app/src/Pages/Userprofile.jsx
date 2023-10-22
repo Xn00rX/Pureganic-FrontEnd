@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import { useNavigate } from "react-router-dom"
 
 const Userprofile = ({ user }) => {
+
+  const navigate = useNavigate()
   const [newUserData, setNewUserData] = useState({ ...user })
   const [isEditing, setIsEditing] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null)
@@ -17,6 +20,10 @@ const Userprofile = ({ user }) => {
   const handleImageChange = (e) => {
     const imageFile = e.target.files[0]
     setSelectedImage(imageFile)
+  }
+
+  const handlePasswordChange = ()=>{
+    navigate("/passwordchange")
   }
 
   const handleUpdateProfile = async () => {
@@ -85,6 +92,7 @@ const Userprofile = ({ user }) => {
           <h2>Email: {user.email}</h2>
           <h2>Name: {user.username}</h2>
           <button onClick={() => setIsEditing(true)}>Edit Profile</button>
+          <button onClick={handlePasswordChange}>Update Password</button>
         </div>
       )}
     </div>

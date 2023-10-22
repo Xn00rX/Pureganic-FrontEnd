@@ -1,5 +1,3 @@
-
-
 import { useState } from 'react'
 import './App.css'
 import { Routes, Route, Link } from 'react-router-dom';
@@ -10,7 +8,9 @@ import Register from './Pages/Register'
 import AddProduct from './Components/AddProduct'
 import { CheckSession } from './services/Auth'
 import {  useEffect } from 'react'
-import Userprofile from './Pages/Userprofile';
+import Userprofile from './Pages/Userprofile'
+import PasswordChange from './Pages/PasswordChange'
+
 
 
 
@@ -48,6 +48,7 @@ function App() {
           <Route path="/signin" element={<Login setUser={setUser} />} />
           <Route path="/register" element={< Register />} />
           <Route path="/userprofile" element={< Userprofile user={user} />} />
+          <Route path="/passwordchange" element={< PasswordChange user={user} />} />
         </Routes>
       </main>
     </div>

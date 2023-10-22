@@ -1,6 +1,6 @@
 import firebase from 'firebase'
 
-const Config = {
+const firebaseConfig = {
   apiKey: "AIzaSyD6nP40tEuy4mAOzWL-z2xxbNnOEKIgkYI",
   authDomain: "otpda-64115.firebaseapp.com",
   projectId: "otpda-64115",
@@ -10,9 +10,6 @@ const Config = {
   measurementId: "G-QDWK0P2571"
 };
 
-firebase.initializeApp(Config)
+firebase.initializeApp(firebaseConfig)
+
 export default firebase
-
-
-
-
