@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Product =({ product, onAddToCart }) => {
+const Product = ({ product, onAddToCart }) => {
   return (
     <div className="product">
       <img src={product.image} alt={product.name} />
