@@ -1,40 +1,51 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { SignInUser } from '../services/Auth'
 
-const Login= ()=> {
-
+const Login = ({ setUser }) => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   })
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleInputChange = (e) => {
-    const { name, value, type, files } = e.target
-    const newValue = value
+    const { name, value } = e.target
     setFormData({
       ...formData,
-      [name]: newValue,
+      [name]: value,
     })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    setLoading(true)
+    setError('')
+
     try {
-      const response = await axios.post('/api/login', formData)
-      console.log('User Logged In:', response.data)
+      const payload = await SignInUser(formData)
+      console.log('User Logged In:', payload)
+      console.log(payload.userimage)
       setFormData({
         email: '',
         password: '',
       })
+      setUser(payload)
+      navigate('/products')
     } catch (error) {
-
       console.error('Error:', error)
+      setError('Login failed')
+    } finally {
+      setLoading(false)
     }
   }
-  
+
   return (
     <div>
       <h1>Login</h1>
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="email"
           name="email"
@@ -42,7 +53,6 @@ const Login= ()=> {
           value={formData.email}
           onChange={handleInputChange}
         />
-       
         <input
           type="password"
           name="password"
@@ -50,10 +60,11 @@ const Login= ()=> {
           value={formData.password}
           onChange={handleInputChange}
         />
-        <button type="button" onClick={handleSubmit}>
-          Login
+        <button type="submit" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
+      {error && <p>{error}</p>}
     </div>
   )
 }
