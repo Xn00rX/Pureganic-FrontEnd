@@ -5,9 +5,9 @@ const Navbar = ({ user, handleLogOut }) => {
   const userOptions = user && (
     <nav className="Navbar">
       <div>
-        <NavLink to="/"> Home </NavLink> | |
+        <NavLink to="/"> Home </NavLink>
         {/* <NavLink to="/addcategory">Add Category</NavLink> */}
-        <NavLink to="/login"> Login </NavLink> |
+        <NavLink to="/login"> Login </NavLink>
         <NavLink to="/register"> Register </NavLink>
         <NavLink to="api/products">Products</NavLink>
         <NavLink to="/userprofile">User Profile</NavLink>
