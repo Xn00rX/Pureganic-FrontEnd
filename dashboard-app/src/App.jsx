@@ -1,21 +1,20 @@
-import { useState } from 'react'
-import './App.css'
-import { Routes, Route, Link } from 'react-router-dom';
-import Navbar from './Components/Navbar'
-import Home from './Pages/Home'
-import Login from './Pages/Login'
-import Register from './Pages/Register'
-import AddProduct from './Components/AddProduct'
+
+import { useState } from "react"
+import { Route, Routes } from "react-router-dom"
+import "./App.css"
+import Navbar from "./Components/Navbar"
+import Home from "./Pages/Home"
+import ProductList from "./Pages/Productlist"
+import Cart from "./Pages/Cart"
+import AddProduct from "./Components/AddProduct"
+import Login from "./Pages/Login"
+import Register from "./Pages/Register"
+import PasswordChange from './Pages/PasswordChange'
+import Userprofile from './Pages/Userprofile'
 import { CheckSession } from './services/Auth'
 import {  useEffect } from 'react'
-import Userprofile from './Pages/Userprofile'
-import PasswordChange from './Pages/PasswordChange'
-
-
-
 
 function App() {
-
   const [user, setUser] = useState(null)
 
   const handleLogOut = () => {
@@ -35,20 +34,21 @@ function App() {
       checkToken()
     }
   }, [])
+  
   return (
     <div>
-<header>
-      <Navbar user={user}
-        handleLogOut={handleLogOut} />
-        </header>
+      <Navbar />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/addproducts" element={<AddProduct />} />
+          <Route path="/api/products" element={<ProductList />} />
+          <Route path="/addproduct" element={<AddProduct />} />
+          <Route path="/cart/:id" element={<Cart />} />
           <Route path="/signin" element={<Login setUser={setUser} />} />
           <Route path="/register" element={< Register />} />
           <Route path="/userprofile" element={< Userprofile user={user} />} />
           <Route path="/passwordchange" element={< PasswordChange user={user} />} />
+            
         </Routes>
       </main>
     </div>

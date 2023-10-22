@@ -1,22 +1,29 @@
-import { Link } from 'react-router-dom'
+import { NavLink } from "react-router-dom"
 import '../App.css'
+
 
 const Navbar = ({ user, handleLogOut }) => {
   const userOptions = user && (
     <nav className="Navbar">
-      <Link to="/">Home</Link>
-      <Link to="/products">Products</Link>
-      <Link to="/userprofile">User Profile</Link>
-      <Link onClick={handleLogOut} to="/">Sign Out</Link>
-      
+
+      <div>
+        <NavLink to="/"> Home </NavLink> |
+|
+        {/* <NavLink to="/addcategory">Add Category</NavLink> */}
+        <NavLink to="/login"> Login </NavLink> |
+        <NavLink to="/register"> Register </NavLink>
+        <NavLink to="api/productS">Products</NavLink>
+      <NavLink to="/userprofile">User Profile</NavLink>
+      <NavLink onClick={handleLogOut} to="/">Sign Out</NavLink>
+      </div>
     </nav>
   )
   const publicOptions = (
     <nav >
-      <Link to="/">Home</Link>
-      <Link to="/products">Products</Link>
-      <Link to="/signin">Sign In</Link>
-      <Link to="/register">Register</Link>
+     <NavLink to="/"> Home </NavLink> 
+             <NavLink to="/addproduct"> Add Products </NavLink> 
+        <NavLink to="/login"> Login </NavLink> |
+        <NavLink to="/register"> Register </NavLink>
     </nav>
   )
   return (
