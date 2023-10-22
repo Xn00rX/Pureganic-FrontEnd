@@ -14,6 +14,7 @@ import Userprofile from './Pages/Userprofile'
 import { CheckSession } from './services/Auth'
 import { useEffect } from 'react'
 
+
 function App() {
   const [user, setUser] = useState(null)
 
@@ -22,10 +23,20 @@ function App() {
     localStorage.clear()
   }
 
+
+
   const checkToken = async () => {
     const user = await CheckSession()
+
+    console.log(user)
+    console.log(user.id)
     setUser(user)
   }
+
+
+
+
+
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -36,7 +47,7 @@ function App() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar  user={user} handleLogOut={handleLogOut}  />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
