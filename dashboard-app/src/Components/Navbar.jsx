@@ -9,7 +9,7 @@ const Navbar = ({ user, handleLogOut }) => {
         {/* <NavLink to="/addcategory">Add Category</NavLink> */}
         <NavLink to="/login"> Login </NavLink> |
         <NavLink to="/register"> Register </NavLink>
-        <NavLink to="api/productS">Products</NavLink>
+        <NavLink to="api/products">Products</NavLink>
         <NavLink to="/userprofile">User Profile</NavLink>
         <NavLink onClick={handleLogOut} to="/">
           Sign Out
@@ -20,8 +20,9 @@ const Navbar = ({ user, handleLogOut }) => {
   const publicOptions = (
     <nav>
       <NavLink to="/"> Home </NavLink>
-      <NavLink to="/addproduct"> Add Products </NavLink>
-      <NavLink to="/login"> Login </NavLink> |
+      <NavLink to="/addproduct"> Add Product </NavLink>
+      <NavLink to="/addcategory"> Add Category </NavLink>
+      <NavLink to="/login"> Login </NavLink>
       <NavLink to="/register"> Register </NavLink>
     </nav>
   )
