@@ -22,7 +22,7 @@ const Navbar = ({ user, handleLogOut }) => {
       <NavLink to="/"> Home </NavLink>
       <NavLink to="/addproduct"> Add Product </NavLink>
       <NavLink to="/addcategory"> Add Category </NavLink>
-      <NavLink to="/login"> Login </NavLink>
+      <NavLink to="/signin"> Login </NavLink>
       <NavLink to="/register"> Register </NavLink>
     </nav>
   )

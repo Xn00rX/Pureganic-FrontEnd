@@ -53,7 +53,7 @@ const AddProduct = () => {
     <div>
       <h1> Add Product</h1>
       <div className="shadow p-3 mb-5 bg-body-tertiary rounded myForms">
-        <form onSubmit={handleSubmit} enctype="multipart/form-data">
+        <form onSubmit={handleSubmit}>
           <div>
             <label className="form-label">Name:</label>
             <input
@@ -101,6 +101,7 @@ const AddProduct = () => {
             <label>Image:</label>
             <input
               type="file"
+              className="form-control"
               name="productImage"
               accept="image/*"
               onChange={handleInputChange}

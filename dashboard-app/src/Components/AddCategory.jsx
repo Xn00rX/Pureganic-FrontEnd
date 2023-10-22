@@ -76,6 +76,7 @@ const AddCategory = () => {
             <label>Image:</label>
             <input
               type="file"
+              className="form-control"
               name="catgImage"
               accept="image/*"
               onChange={handleInputChange}
