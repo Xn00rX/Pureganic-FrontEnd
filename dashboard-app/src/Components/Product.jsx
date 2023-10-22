@@ -6,7 +6,7 @@ const Product = () => {
   const [products, setProducts] = useState([])
   const getProduct = async () => {
     const response = await axios.get("http://localhost:4000/api/products")
-    // console.log(response.data)
+    console.log(response)
     setProducts(response.data)
   }
 
