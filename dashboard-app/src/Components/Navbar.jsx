@@ -7,7 +7,7 @@ const Navbar = ({ user, handleLogOut }) => {
       <div>
         <NavLink to="/"> Home </NavLink>
         {/* <NavLink to="/addcategory">Add Category</NavLink> */}
-        <NavLink to="/login"> Login </NavLink>
+        <NavLink to="/sign"> Login </NavLink>
         <NavLink to="/register"> Register </NavLink>
         <NavLink to="api/products">Products</NavLink>
         <NavLink to="/userprofile">User Profile</NavLink>
