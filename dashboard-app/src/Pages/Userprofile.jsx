@@ -1,21 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from 'react-router-dom'
 
 const Userprofile = ({ user }) => {
-
   console.log(user.id)
 
+
   const navigate = useNavigate()
-  const [newUserData, setNewUserData] = useState({ ...user })
+  const [userData, setUserData] = useState({ ...user })
   const [isEditing, setIsEditing] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null)
+ 
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
-    setNewUserData({
-      ...newUserData,
-      [name]: value
+    setUserData({
+      ...userData,
+      [name]: value,
     })
   }
 
@@ -24,31 +25,34 @@ const Userprofile = ({ user }) => {
     setSelectedImage(imageFile)
   }
 
-  const handlePasswordChange = ()=>{
-    navigate("/passwordchange")
+  const handlePasswordChange = () => {
+    navigate('/passwordchange')
   }
 
   const handleUpdateProfile = async () => {
     const formData = new FormData()
-    formData.append('firstName', newUserData.firstName)
-    formData.append('lastName', newUserData.lastName)
-    formData.append('email', newUserData.email)
+    formData.append('firstName', userData.firstName)
+    formData.append('lastName', userData.lastName)
+    formData.append('email', userData.email)
 
     if (selectedImage) {
       formData.append('image', selectedImage)
     }
 
     try {
-       await axios.post(`http://localhost:4000/updateprofile/${user.id}`, formData, {
+
+      // const response =  axios.get(`http://localhost:4000/userinfo/${user.id}`)
+      // console
+
+      const response = await axios.post(`http://localhost:4000/updateprofile/${user.id}`, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data'
-        }
+          'Content-Type': 'multipart/form-data',
+        },
       })
 
       setIsEditing(false)
-      // console.log(response.data)
-      // setNewUserData({ ...newUserData, ...response.data })
-      // console.log(setNewUserData)
+      // You can update the state with the response data if needed
+      // setUserData({ ...userData, ...response.data })
     } catch (error) {
       console.error(error)
     }
@@ -62,21 +66,21 @@ const Userprofile = ({ user }) => {
           <input
             type="text"
             name="firstName"
-            value={newUserData.firstName}
+            value={userData.firstName}
             onChange={handleInputChange}
           />
           <label htmlFor="lastName">Last Name:</label>
           <input
             type="text"
             name="lastName"
-            value={newUserData.lastName}
+            value={userData.lastName}
             onChange={handleInputChange}
           />
           <label htmlFor="email">Email:</label>
           <input
             type="text"
             name="email"
-            value={newUserData.email}
+            value={userData.email}
             onChange={handleInputChange}
           />
           <label htmlFor="image">Profile Image:</label>
@@ -90,9 +94,9 @@ const Userprofile = ({ user }) => {
         </form>
       ) : (
         <div>
-          <img src={`http://localhost:4000/images/${user.userimage}`} height={150} width={100} alt="" />
-          <h2>Email: {user.email}</h2>
-          <h2>Name: {user.username}</h2>
+          <img src={`http://localhost:4000/images/${userData.userimage}`} height={150} width={100} alt="" />
+          <h2>Email: {userData.email}</h2>
+          <h2>Name: {userData.username}</h2>
           <button onClick={() => setIsEditing(true)}>Edit Profile</button>
           <button onClick={handlePasswordChange}>Update Password</button>
         </div>
@@ -102,5 +106,3 @@ const Userprofile = ({ user }) => {
 }
 
 export default Userprofile
-
-
