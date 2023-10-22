@@ -1,11 +1,73 @@
+
 .Navbar {
-  display: block; 
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
 }
+
+
+.Navbar a {
+  text-decoration: none;
+  color: #fff;
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+
+.Navbar a:hover {
+  color: #f00;
+}
+
 
 .myForms {
   width: 70%;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  
+}
+.Home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; 
+  background-color: #f0f0f0; 
+}
+.form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form input {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form button[type="submit"] {
+  width: 100%;
+  background-color: #007BFF;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.Home button {
+  margin: 10px; 
+  padding: 10px 20px; 
+  font-size: 16px;
 }
