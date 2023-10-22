@@ -5,14 +5,16 @@ const AddProduct = () => {
   const [productData, setProductData] = useState({
     productName: '',
     productDesc: '',
-    productPrice: 0
+    productPrice: 0,
+    productImage: null
   })
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target
+    const { name, value, type, files } = e.target
+    const newValue = type === 'file' ? files[0] : value
     setProductData({
       ...productData,
-      [name]: value
+      [name]: newValue
     })
   }
 
@@ -22,7 +24,8 @@ const AddProduct = () => {
     const data = {
       productDesc: productData.productDesc,
       productName: productData.productName,
-      productPrice: productData.productPrice
+      productPrice: productData.productPrice,
+      productImage: productData.productImage
     }
 
     try {
@@ -30,7 +33,7 @@ const AddProduct = () => {
         'http://localhost:4000/apiproduct',
         data,
         {
-          headers: { 'Content-Type': 'application/json' }
+          headers: { 'Content-Type': 'multipart/form-data' }
         }
       )
 
@@ -38,7 +41,8 @@ const AddProduct = () => {
       setProductData({
         productName: '',
         productDesc: '',
-        productPrice: 0
+        productPrice: 0,
+        productImage: null
       })
     } catch (error) {
       console.error('Error:', error)
@@ -80,15 +84,28 @@ const AddProduct = () => {
             />
           </div>
 
-          <div>
-            <label>Category:</label>
+          {/* <div>
+            <label>Category:</label> */}
 
-            <select
-              name="category"
-              className="form-control"
+          {/* <select
+              name="category[]"
               multiple="multiple"
               id="category"
-            ></select>
+              class="form-control"
+            >
+              <option value="option1">Option 1</option>
+            </select>
+          </div> */}
+
+          <div>
+            <label>Image:</label>
+            <input
+              type="file"
+              className="form-control"
+              name="productImage"
+              accept="image/*"
+              onChange={handleInputChange}
+            />
           </div>
 
           <button className="btn btn-secondary" type="submit">
