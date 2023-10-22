@@ -11,9 +11,9 @@ const Register = () => {
     password: '',
     image: '',
     gender: 'No Comments',
-    role: 'buyer', 
+    role: 'buyer',
     phonenumber: '',
-    confirmPassword: '',
+    confirmPassword: ''
   })
 
   const [passwordError, setPasswordError] = useState('')
@@ -24,20 +24,19 @@ const Register = () => {
       setPasswordError('')
     }
   }, [userData.password, userData.confirmPassword])
-  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setUserData({
       ...userData,
-      [name]: value,
+      [name]: value
     })
   }
 
   const handleImageChange = (e) => {
     setUserData({
       ...userData,
-      image: e.target.files[0],
+      image: e.target.files[0]
     })
   }
 
@@ -53,7 +52,6 @@ const Register = () => {
     formData.append('role', userData.role)
     formData.append('phonenumber', userData.phonenumber)
 
-    
     try {
       const response = await RegisterUser(formData)
       console.log('Response:', response)
@@ -63,11 +61,11 @@ const Register = () => {
         lastName: '',
         email: '',
         password: '',
-        image:'',
+        image: '',
         gender: 'No Comments',
         role: 'buyer',
         phonenumber: 0,
-        confirmPassword: '',
+        confirmPassword: ''
       })
     } catch (error) {
       console.error('Error:', error)
@@ -78,23 +76,43 @@ const Register = () => {
     <form onSubmit={handleSubmit}>
       <div>
         <label>First Name:</label>
-        <input type="text" name="firstName" value={userData.firstName} onChange={handleInputChange} />
+        <input
+          type="text"
+          name="firstName"
+          value={userData.firstName}
+          onChange={handleInputChange}
+        />
       </div>
       <div>
         <label>Last Name:</label>
-        <input type="text" name="lastName" value={userData.lastName} onChange={handleInputChange} />
+        <input
+          type="text"
+          name="lastName"
+          value={userData.lastName}
+          onChange={handleInputChange}
+        />
       </div>
       <div>
         <label>Email:</label>
-        <input type="email" name="email" value={userData.email} onChange={handleInputChange} />
+        <input
+          type="email"
+          name="email"
+          value={userData.email}
+          onChange={handleInputChange}
+        />
       </div>
       <div>
         <label>Password:</label>
-        <input type="password" name="password" value={userData.password} onChange={handleInputChange} />
+        <input
+          type="password"
+          name="password"
+          value={userData.password}
+          onChange={handleInputChange}
+        />
       </div>
       <div>
-      <label>Confirm Password:</label>
-      <input
+        <label>Confirm Password:</label>
+        <input
           type="password"
           name="confirmPassword"
           placeholder="Confirm Password"
@@ -102,15 +120,24 @@ const Register = () => {
           onChange={handleInputChange}
           required
         />
-        </div>
-        {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
+      </div>
+      {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
       <div>
         <label>Upload Image:</label>
-        <input type="file" name="image" accept="image/*" onChange={handleImageChange} />
+        <input
+          type="file"
+          name="image"
+          accept="image/*"
+          onChange={handleImageChange}
+        />
       </div>
       <div>
         <label>Gender:</label>
-        <select name="gender" value={userData.gender} onChange={handleInputChange}>
+        <select
+          name="gender"
+          value={userData.gender}
+          onChange={handleInputChange}
+        >
           <option value="male">Male</option>
           <option value="female">Female</option>
           <option value="No Comments">No Comments</option>
@@ -126,13 +153,13 @@ const Register = () => {
       <div>
         <label>Phone Number:</label>
         <input
-            type="tel"
-            name="phonenumber"
-            placeholder="+97330000000"
-            value={userData.phonenumber || "+973"}
-            onChange={handleInputChange}
-            pattern="\+973[0-9]{8}"
-            required
+          type="tel"
+          name="phonenumber"
+          placeholder="+97330000000"
+          value={userData.phonenumber || '+973'}
+          onChange={handleInputChange}
+          pattern="\+973[0-9]{8}"
+          required
         />
       </div>
 
