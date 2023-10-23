@@ -1,13 +1,14 @@
 import { NavLink } from "react-router-dom"
 import "../App.css"
 
+
 const Navbar = ({ user, handleLogOut }) => {
   const userOptions = user && (
     <nav className="Navbar">
       <div>
-        <NavLink to="/"> Home </NavLink> | |
+        <NavLink to="/"> Home </NavLink>
         {/* <NavLink to="/addcategory">Add Category</NavLink> */}
-        <NavLink to="/signin"> Login </NavLink> |
+        <NavLink to="/signin"> Login </NavLink> 
         <NavLink to="api/productS">Products</NavLink>
         <NavLink to="/userprofile">User Profile</NavLink>
         <NavLink onClick={handleLogOut} to="/">
@@ -20,7 +21,7 @@ const Navbar = ({ user, handleLogOut }) => {
     <nav>
       <NavLink to="/"> Home </NavLink>
       <NavLink to="api/productS">Products</NavLink>
-      <NavLink to="/signin"> Login </NavLink> |
+      <NavLink to="/signin"> Login </NavLink> 
       <NavLink to="/register"> Register </NavLink>
     </nav>
   )
