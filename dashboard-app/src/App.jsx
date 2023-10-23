@@ -51,7 +51,6 @@ function App() {
   return (
     <div>
       <Navbar user={user} handleLogOut={handleLogOut} />
-      {<Navbar  /> }
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
