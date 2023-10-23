@@ -14,6 +14,7 @@ import { CheckSession } from './services/Auth'
 import { useEffect } from 'react'
 import axios from 'axios'
 import Footer from './Components/footer'
+import Event from './Pages/Event'
 
 
 function App() {
@@ -50,9 +51,11 @@ function App() {
   return (
     <div>
       <Navbar user={user} handleLogOut={handleLogOut} />
+      {<Navbar  /> }
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/event" element={<Event />} />
           <Route path="/api/products" element={<ProductList />} />
           <Route path="/addproduct" element={<AddProduct />} />
           <Route path="/cart/:id" element={<Cart />} />

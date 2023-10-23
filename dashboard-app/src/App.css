@@ -72,16 +72,15 @@
   font-size: 16px;
 }
 
-.map-container {
-  height: 400px; 
-  width: 100%;
+
+
+.map-container{
+  width: 40%;
+  height: 80vh;
 }
 
 
-.google-map {
-  height: 100%;
-  width: 100%;
-}
+
 
 
 
