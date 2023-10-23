@@ -15,6 +15,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import Footer from './Components/footer'
 import Event from './Pages/Event'
+import ShowEvent from './Pages/ShowEvent'
 
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/event" element={<Event />} />
+          <Route path="/showevents" element={<ShowEvent />} />
           <Route path="/api/products" element={<ProductList />} />
           <Route path="/addproduct" element={<AddProduct />} />
           <Route path="/cart/:id" element={<Cart />} />
