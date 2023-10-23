@@ -15,7 +15,6 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import Footer from './Components/footer'
 
-
 function App() {
   const [user, setUser] = useState(null)
   const [updatedUser, setUpdatedUser] = useState(null)
@@ -27,7 +26,6 @@ function App() {
 
   const checkToken = async () => {
     const user = await CheckSession()
-
     console.log(user)
     console.log(user.id)
     setUser(user)
@@ -39,13 +37,12 @@ function App() {
     console.log(response.data)
     setUpdatedUser(response.data)
   }
-  
+
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
       checkToken()
       hello()
-
     }
   }, [])
 
