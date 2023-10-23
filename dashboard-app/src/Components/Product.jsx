@@ -5,7 +5,8 @@ import axios from 'axios'
 const Product = () => {
   const [products, setProducts] = useState([])
   const getProduct = async () => {
-    const response = await axios.get('http://localhost:4000/api/products')
+    const response = await axios.get("/api/products")
+
     console.log(response)
     setProducts(response.data)
   }
