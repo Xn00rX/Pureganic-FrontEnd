@@ -56,8 +56,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Product />} />
+          <Route path="/productdelete/:product_id" element={<Product />} />
+          <Route
+            path="/productupdate/:product_id"
+            element={<UpdateProduct />}
+          />
           <Route path="/api/products" element={<ProductList />} />
-          <Route path="/updateproduct" element={<UpdateProduct />} />
           <Route path="/addproduct" element={<AddProduct />} />
           <Route path="/addcategory" element={<AddCatgeory />} />
           <Route path="/cart/:id" element={<Cart />} />

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 
 const Product = () => {
@@ -13,6 +14,17 @@ const Product = () => {
   useEffect(() => {
     getProducts()
   }, [])
+
+  const { product_id } = useParams()
+  const deleteProduct = (product_id) => {
+    const response = axios.delete(
+      `http://localhost:4000/apiproduct/` + product_id
+    )
+  }
+
+  const updateProduct = (product_id) => {
+    const response = axios.put(`http://localhost:4000/apiproduct/` + product_id)
+  }
 
   const imageStyle = {
     width: '80px',
@@ -51,9 +63,21 @@ const Product = () => {
                 <td>{product.productDesc}</td>
                 <td>{product.category}</td>
                 <td>
-                  <button className="btn btn-warning">Update</button>
+                  <Link to={`/productdelete/:id/${product._id}`}>
+                    <button
+                      onClick={(event) => {
+                        event.preventDefault()
+                        deleteProduct(product._id)
+                      }}
+                      className="btn btn-warning"
+                    >
+                      Delete
+                    </button>
+                  </Link>
                   &nbsp;&nbsp;&nbsp;
-                  <button className="btn btn-warning">Delete</button>
+                  <Link to={`/productupdate/:id/${product._id}`}>
+                    <button className="btn btn-warning">Edit</button>
+                  </Link>
                 </td>
               </tr>
             </tbody>
