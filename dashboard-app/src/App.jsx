@@ -6,6 +6,7 @@ import Home from './Pages/Home'
 import ProductList from './Pages/Productlist'
 import Cart from './Pages/Cart'
 import AddProduct from './Components/AddProduct'
+import UpdateProduct from './Components/UpdateProduct'
 import AddCategory from './Components/AddCategory'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
@@ -13,7 +14,6 @@ import PasswordChange from './Pages/PasswordChange'
 import Userprofile from './Pages/Userprofile'
 import { CheckSession } from './services/Auth'
 import { useEffect } from 'react'
-
 
 function App() {
   const [user, setUser] = useState(null)
@@ -23,8 +23,6 @@ function App() {
     localStorage.clear()
   }
 
-
-
   const checkToken = async () => {
     const user = await CheckSession()
 
@@ -32,11 +30,6 @@ function App() {
     console.log(user.id)
     setUser(user)
   }
-
-
-
-
-
 
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -47,11 +40,12 @@ function App() {
 
   return (
     <div>
-      <Navbar  user={user} handleLogOut={handleLogOut}  />
+      <Navbar user={user} handleLogOut={handleLogOut} />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/api/products" element={<ProductList />} />
+          <Route path="/updateproduct" element={<UpdateProduct />} />
           <Route path="/addproduct" element={<AddProduct />} />
           <Route path="/addcategory" element={<AddCategory />} />
           <Route path="/cart/:id" element={<Cart />} />

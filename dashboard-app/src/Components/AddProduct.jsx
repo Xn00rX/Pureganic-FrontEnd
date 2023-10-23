@@ -7,7 +7,7 @@ const AddProduct = () => {
     productDesc: '',
     productPrice: 0,
     productImage: null,
-    category: ''
+    category: null
   })
   const [categories, setCategories] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('')
@@ -33,15 +33,15 @@ const AddProduct = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log('heeree', selectedCategory)
 
     const data = {
       productDesc: productData.productDesc,
       productName: productData.productName,
       productPrice: productData.productPrice,
       productImage: productData.productImage,
-      category: productData.category
+      category: selectedCategory
     }
-
     try {
       const response = await axios.post(
         'http://localhost:4000/apiproduct',
@@ -57,7 +57,7 @@ const AddProduct = () => {
         productDesc: '',
         productPrice: 0,
         productImage: null,
-        category: ''
+        category: null
       })
     } catch (error) {
       console.error('Error:', error)
@@ -117,22 +117,12 @@ const AddProduct = () => {
               onChange={(e) => setSelectedCategory(e.target.value)}
             >
               {categories.map((option) => (
-                <option key={option._id} value={option.catgName}>
+                <option key={option._id} value={option._id}>
                   {option.catgName}
                 </option>
               ))}
             </select>
           </div>
-
-          {/* <div>
-            <label className="form-label">Category:</label>
-            <input
-              name="category"
-              className="form-control"
-              value={category}
-              onChange={handleCategoryChange}
-            />
-          </div> */}
 
           <button className="btn btn-secondary" type="submit">
             Add Product
