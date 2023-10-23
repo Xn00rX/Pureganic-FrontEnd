@@ -4,9 +4,11 @@ import './App.css'
 import Navbar from './Components/Navbar'
 import Home from './Pages/Home'
 import ProductList from './Pages/Productlist'
+import Product from './Components/Product'
 import Cart from './Pages/Cart'
 import AddProduct from './Components/AddProduct'
-import UpdateProduct from './Components/UpdateProduct'
+import AddCatgeory from './Components/AddCategory'
+import UpdateProduct from './Pages/UpdateProduct'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
 import PasswordChange from './Pages/PasswordChange'
@@ -53,9 +55,11 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/products" element={<Product />} />
           <Route path="/api/products" element={<ProductList />} />
           <Route path="/updateproduct" element={<UpdateProduct />} />
           <Route path="/addproduct" element={<AddProduct />} />
+          <Route path="/addcategory" element={<AddCatgeory />} />
           <Route path="/cart/:id" element={<Cart />} />
           <Route path="/signin" element={<Login setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
