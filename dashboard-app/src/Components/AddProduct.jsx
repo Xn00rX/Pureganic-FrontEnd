@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 
 const AddProduct = () => {
@@ -6,21 +6,8 @@ const AddProduct = () => {
     productName: '',
     productDesc: '',
     productPrice: 0,
-    productImage: null,
-    category: ''
+    productImage: null
   })
-  const [categories, setCategories] = useState([])
-  const [selectedCategory, setSelectedCategory] = useState('')
-
-  const getCategory = async () => {
-    const response = await axios.get(`http://localhost:4000/apicategory`)
-    setCategories(response.data)
-    console.log(response.data)
-  }
-
-  useEffect(() => {
-    getCategory()
-  }, [])
 
   const handleInputChange = (e) => {
     const { name, value, type, files } = e.target
@@ -38,8 +25,7 @@ const AddProduct = () => {
       productDesc: productData.productDesc,
       productName: productData.productName,
       productPrice: productData.productPrice,
-      productImage: productData.productImage,
-      category: productData.category
+      productImage: productData.productImage
     }
 
     try {
@@ -56,8 +42,7 @@ const AddProduct = () => {
         productName: '',
         productDesc: '',
         productPrice: 0,
-        productImage: null,
-        category: ''
+        productImage: null
       })
     } catch (error) {
       console.error('Error:', error)
@@ -99,40 +84,29 @@ const AddProduct = () => {
             />
           </div>
 
+          {/* <div>
+            <label>Category:</label> */}
+
+          {/* <select
+              name="category[]"
+              multiple="multiple"
+              id="category"
+              class="form-control"
+            >
+              <option value="option1">Option 1</option>
+            </select>
+          </div> */}
+
           <div>
             <label>Image:</label>
             <input
               type="file"
-              name="productImage"
               className="form-control"
+              name="productImage"
               accept="image/*"
               onChange={handleInputChange}
             />
           </div>
-
-          <div>
-            <label className="form-label">Category:</label>
-            <select
-              className="form-control"
-              onChange={(e) => setSelectedCategory(e.target.value)}
-            >
-              {categories.map((option) => (
-                <option key={option._id} value={option.catgName}>
-                  {option.catgName}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* <div>
-            <label className="form-label">Category:</label>
-            <input
-              name="category"
-              className="form-control"
-              value={category}
-              onChange={handleCategoryChange}
-            />
-          </div> */}
 
           <button className="btn btn-secondary" type="submit">
             Add Product
