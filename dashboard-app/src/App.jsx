@@ -13,6 +13,8 @@ import Userprofile from './Pages/Userprofile'
 import { CheckSession } from './services/Auth'
 import { useEffect } from 'react'
 import axios from 'axios'
+import Footer from './Components/footer'
+
 
 function App() {
   const [user, setUser] = useState(null)
@@ -65,6 +67,7 @@ function App() {
           />
         </Routes>
       </main>
+      <Footer></Footer>
     </div>
   )
 }
