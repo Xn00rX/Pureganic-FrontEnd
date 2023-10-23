@@ -15,6 +15,7 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import Footer from './Components/footer'
 
+
 function App() {
   const [user, setUser] = useState(null)
   const [updatedUser, setUpdatedUser] = useState(null)
@@ -58,10 +59,8 @@ function App() {
           <Route path="/signin" element={<Login setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/userprofile" element={<Userprofile user={user} />} />
-          <Route
-            path="/passwordchange"
-            element={<PasswordChange user={user} />}
-          />
+          <Route  path="/passwordchange" element={<PasswordChange user={user} />} />
+   
         </Routes>
       </main>
       <Footer></Footer>

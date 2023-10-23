@@ -12,7 +12,7 @@ const Userprofile = ({ user }) => {
     const { name, value } = e.target
     setNewUserData({
       ...newUserData,
-      [name]: value,
+      [name]: value
     })
   }
 
@@ -21,7 +21,7 @@ const Userprofile = ({ user }) => {
     setSelectedImage(imageFile)
   }
 
-  const handleUpdatePassword =()=>{
+  const handleUpdatePassword = () => {
     navigate('/passwordchange')
   }
 
@@ -35,18 +35,16 @@ const Userprofile = ({ user }) => {
       formData.append('image', selectedImage)
     }
 
-    const response = axios.post(`http://localhost:4000/updateprofile/${user.id}`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
+    const response = axios
+      .post(`http://localhost:4000/updateprofile/${user.id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
       .then((response) => {
-    
         setIsEditing(false)
       })
-      .catch((error) => {
-       
-      })
+      .catch((error) => {})
   }
 
   return (
@@ -85,14 +83,24 @@ const Userprofile = ({ user }) => {
         </div>
       ) : (
         <div>
-          {user?(
-<><img src={`http://localhost:4000/images/${user.userimage}`} height={150} width={100} alt="" />
-          <h2>Email: {user.email}</h2>
-          <h2>Name: {user.username}</h2>
-          <button onClick={() => setIsEditing(true)}>Edit Profile</button>
-          <button onClick={handleUpdatePassword}>Change Password</button></>
-            
-          ):(<><h1>Null</h1></>)}
+          {user ? (
+            <>
+              <img
+                src={`http://localhost:4000/images/${user.userimage}`}
+                height={150}
+                width={100}
+                alt=""
+              />
+              <h2>Email: {user.email}</h2>
+              <h2>Name: {user.username}</h2>
+              <button onClick={() => setIsEditing(true)}>Edit Profile</button>
+              <button onClick={handleUpdatePassword}>Change Password</button>
+            </>
+          ) : (
+            <>
+              <h1>Null</h1>
+            </>
+          )}
           {/* <img src={`http://localhost:4000/images/${user.userimage}`} height={150} width={100} alt="" />
           <h2>Email: {user.email}</h2>
           <h2>Name: {user.username}</h2>

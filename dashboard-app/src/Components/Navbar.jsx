@@ -22,6 +22,7 @@ const Navbar = ({ user, handleLogOut }) => {
   const publicOptions = (
     <nav>
       <NavLink to="/">Home</NavLink>
+      <NavLink to="/event">Event</NavLink>
       <NavLink to="/addproduct">Add Product</NavLink>
       <NavLink to="/addcategory">Add Category</NavLink>
       <NavLink to="/signin">Login</NavLink>
