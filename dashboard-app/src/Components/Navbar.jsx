@@ -1,6 +1,5 @@
-import { NavLink } from "react-router-dom"
-import "../App.css"
-
+import { NavLink } from 'react-router-dom'
+import '../App.css'
 
 const Navbar = ({ user, handleLogOut }) => {
   const userOptions = user && (
@@ -9,11 +8,10 @@ const Navbar = ({ user, handleLogOut }) => {
         <NavLink to="/"> Home </NavLink>
         {/* <NavLink to="/addcategory">Add Category</NavLink> */}
 
-    
         <NavLink to="/register"> Register </NavLink>
         <NavLink to="/addproduct"> Add Product </NavLink>
         <NavLink to="/addcategory"> Add Category </NavLink>
-        <NavLink to="api/products">Products</NavLink>
+        <NavLink to="/products">Products</NavLink>
         <NavLink to="/userprofile">User Profile</NavLink>
         <NavLink onClick={handleLogOut} to="/">
           Sign Out
@@ -24,8 +22,8 @@ const Navbar = ({ user, handleLogOut }) => {
   const publicOptions = (
     <nav>
       <NavLink to="/"> Home </NavLink>
-      <NavLink to="api/productS">Products</NavLink>
-      <NavLink to="/signin"> Login </NavLink> 
+      <NavLink to="/productS">Products</NavLink>
+      <NavLink to="/signin"> Login </NavLink>
       <NavLink to="/register"> Register </NavLink>
     </nav>
   )
