@@ -37,9 +37,9 @@ const AddCategory = () => {
       )
 
       console.log('Category added:', response.data)
-      setProductData({
-        productName: '',
-        productDesc: '',
+      setCategoryData({
+        catgName: '',
+        catgDesc: '',
         catgImage: null
       })
     } catch (error) {

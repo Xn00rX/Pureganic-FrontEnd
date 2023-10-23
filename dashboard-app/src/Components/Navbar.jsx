@@ -8,8 +8,12 @@ const Navbar = ({ user, handleLogOut }) => {
       <div>
         <NavLink to="/"> Home </NavLink>
         {/* <NavLink to="/addcategory">Add Category</NavLink> */}
-        <NavLink to="/signin"> Login </NavLink> 
-        <NavLink to="api/productS">Products</NavLink>
+
+    
+        <NavLink to="/register"> Register </NavLink>
+        <NavLink to="/addproduct"> Add Product </NavLink>
+        <NavLink to="/addcategory"> Add Category </NavLink>
+        <NavLink to="api/products">Products</NavLink>
         <NavLink to="/userprofile">User Profile</NavLink>
         <NavLink onClick={handleLogOut} to="/">
           Sign Out
