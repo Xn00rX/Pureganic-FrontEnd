@@ -1,18 +1,19 @@
-import { useState } from 'react'
-import { Route, Routes } from 'react-router-dom'
-import './App.css'
-import Navbar from './Components/Navbar'
-import Home from './Pages/Home'
-import ProductList from './Pages/Productlist'
-import Cart from './Pages/Cart'
-import AddProduct from './Components/AddProduct'
-import Login from './Pages/Login'
-import Register from './Pages/Register'
-import PasswordChange from './Pages/PasswordChange'
-import Userprofile from './Pages/Userprofile'
-import { CheckSession } from './services/Auth'
-import { useEffect } from 'react'
-import axios from 'axios'
+import { useState } from "react"
+import { Route, Routes } from "react-router-dom"
+import "./App.css"
+import Navbar from "./Components/Navbar"
+import Home from "./Pages/Home"
+import ProductList from "./Pages/Productlist"
+import Cart from "./Pages/Cart"
+import AddProduct from "./Components/AddProduct"
+import Login from "./Pages/Login"
+import Register from "./Pages/Register"
+import PasswordChange from "./Pages/PasswordChange"
+import Userprofile from "./Pages/Userprofile"
+import { CheckSession } from "./services/Auth"
+import { useEffect } from "react"
+import axios from "axios"
+import Order from "./Pages/Order"
 
 function App() {
   const [user, setUser] = useState(null)
@@ -37,13 +38,12 @@ function App() {
     console.log(response.data)
     setUpdatedUser(response.data)
   }
-  
+
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token")
     if (token) {
       checkToken()
       hello()
-
     }
   }, [])
 
@@ -55,10 +55,12 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/api/products" element={<ProductList />} />
           <Route path="/addproduct" element={<AddProduct />} />
-          <Route path="/cart/:id" element={<Cart />} />
+          <Route path="/cart" element={<Cart user={user} />} />
+          <Route path="/orders" element={<Order user={user} />} />
           <Route path="/signin" element={<Login setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/userprofile" element={<Userprofile user={user} />} />
+
           <Route
             path="/passwordchange"
             element={<PasswordChange user={user} />}
