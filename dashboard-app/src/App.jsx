@@ -34,31 +34,25 @@ function App() {
     setUser(user)
   }
 
-  const hello = async () => {
-    console.log(user.id)
-    let response = await axios.get(`http://localhost:4000/userinfo/${user.id}`)
-    console.log(response.data)
-    setUpdatedUser(response.data)
-  }
+
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     if (token) {
       checkToken()
-      hello()
     }
   }, [])
 
   return (
     <div>
       <Navbar user={user} handleLogOut={handleLogOut} />
-      <main>
+      <main className='main'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/event" element={<Event />} />
           <Route path="/showevents" element={<ShowEvent />} />
           <Route path="/api/products" element={<ProductList />} />
-          <Route path="/addproduct" element={<AddProduct />} />
+          <Route path="/addproduct" element={<AddProduct  user={user}/>} />
           <Route path="/cart/:id" element={<Cart />} />
           <Route path="/signin" element={<Login setUser={setUser} />} />
           <Route path="/register" element={<Register />} />

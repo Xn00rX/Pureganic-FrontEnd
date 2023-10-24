@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 
-const AddProduct = () => {
+const AddProduct = ({user}) => {
+  console.log({user})
   const [productData, setProductData] = useState({
     productName: '',
     productDesc: '',

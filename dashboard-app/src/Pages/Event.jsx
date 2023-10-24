@@ -2,17 +2,17 @@ import React, { useState, useMemo } from 'react'
 import { GoogleMap, useLoadScript, MarkerF } from '@react-google-maps/api'
 import usePlacesAutocomplete, {
   getGeocode,
-  getLatLng,
+  getLatLng
 } from 'use-places-autocomplete'
 import {
   Combobox,
   ComboboxInput,
   ComboboxPopover,
   ComboboxList,
-  ComboboxOption,
+  ComboboxOption
 } from '@reach/combobox'
 import '@reach/combobox/styles.css'
-import axios from 'axios' // Import Axios
+import axios from 'axios'
 
 const Event = () => {
   const [selected, setSelected] = useState(null)
@@ -20,14 +20,16 @@ const Event = () => {
   const [eventData, setEventData] = useState({
     Name: '',
     Price: 0,
-    EventImage: null, // Changed to hold the file object
+    EventImage: null,
+    EventLocation: '',
+    Date: '',
     Latitude: 0,
-    Longitude: 0,
+    Longitude: 0
   })
 
   const { isLoaded } = useLoadScript({
     libraries: ['places'],
-    googleMapsApiKey: 'AIzaSyC6DwktZ3BWJv42jfFa0n_M0p5opKEBKs4',
+    googleMapsApiKey: 'AIzaSyC6DwktZ3BWJv42jfFa0n_M0p5opKEBKs4'
   })
 
   const center = useMemo(() => mapCenter, [mapCenter])
@@ -37,7 +39,7 @@ const Event = () => {
     const { name, value, type } = e.target
     setEventData({
       ...eventData,
-      [name]: type === 'file' ? e.target.files[0] : value,
+      [name]: type === 'file' ? e.target.files[0] : value
     })
   }
 
@@ -47,18 +49,18 @@ const Event = () => {
 
     setSelected({
       lat: latitude,
-      lng: longitude,
+      lng: longitude
     })
 
     setMapCenter({
       lat: latitude,
-      lng: longitude,
+      lng: longitude
     })
 
     setEventData({
       ...eventData,
       Latitude: latitude,
-      Longitude: longitude,
+      Longitude: longitude
     })
   }
 
@@ -67,11 +69,11 @@ const Event = () => {
       ready,
       value,
       suggestions: { status, data },
-      setValue,
+      setValue
     } = usePlacesAutocomplete({
       requestOptions: {
-        componentRestrictions: { country: 'BH' },
-      },
+        componentRestrictions: { country: 'BH' }
+      }
     })
 
     const handleSelect = async (address) => {
@@ -86,7 +88,7 @@ const Event = () => {
       setEventData({
         ...eventData,
         Latitude: lat,
-        Longitude: lng,
+        Longitude: lng
       })
     }
 
@@ -117,20 +119,34 @@ const Event = () => {
     formData.append('Latitude', eventData.Latitude)
     formData.append('Longitude', eventData.Longitude)
     formData.append('EventImage', eventData.EventImage)
+    formData.append('EventLocation', eventData.EventLocation)
+    formData.append('Date', eventData.Date)
 
     try {
-      const response = await axios.post('http://localhost:4000/addevent', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
+      const response = await axios.post(
+        'http://localhost:4000/addevent',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      )
 
       if (response.status === 200) {
         console.log('Event data submitted successfully.')
-        // You can handle success accordingly
+        console.log(response.data)
+        setEventData({
+          Name: '',
+          Price: 0,
+          EventImage: null,
+          EventLocation: '',
+          Date: '',
+          Latitude: 0,
+          Longitude: 0
+        })
       } else {
         console.error('Failed to submit event data.')
-        // Handle errors from the backend
       }
     } catch (error) {
       console.error('Error sending data to the backend:', error)
@@ -141,7 +157,7 @@ const Event = () => {
 
   return (
     <div>
-      <h1>Event Map</h1>
+      <h1>Create Your Own Event</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="Name">Event Name:</label>
@@ -173,6 +189,26 @@ const Event = () => {
             onChange={handleInputChange}
           />
         </div>
+        <div>
+          <label htmlFor="EventLocation">Event Location Name:</label>
+          <input
+            type="text"
+            id="EventLocation"
+            name="EventLocation"
+            value={eventData.EventLocation}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="Date">Event Date:</label>
+          <input
+            type="date"
+            id="Date"
+            name="Date"
+            value={eventData.Date}
+            onChange={handleInputChange}
+          />
+        </div>
         <PlacesAutocomplete />
         <GoogleMap
           zoom={10.36}
@@ -189,7 +225,7 @@ const Event = () => {
             <p>Longitude: {selected.lng}</p>
           </div>
         )}
-        <button type="submit">Submit Event</button>
+        <button type="submit">Create Event </button>
       </form>
     </div>
   )
