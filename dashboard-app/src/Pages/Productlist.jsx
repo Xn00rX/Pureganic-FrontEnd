@@ -1,9 +1,15 @@
-import Product from '../Components/Product'
+import Product from "../Components/Product"
 
-const ProductList = () => {
+const ProductList = ({ user, handleClick }) => {
   return (
-    <div className="product-list">
-      <Product />
+    <div>
+      {user ? (
+        <div>
+          <Product user={user} handleClick={handleClick} />
+        </div>
+      ) : (
+        <div>{<Product />}</div>
+      )}
     </div>
   )
 }
