@@ -8,9 +8,6 @@ const Navbar = ({ user, handleLogOut }) => {
       <div>
         <NavLink to="/"> Home </NavLink>
         {/* <NavLink to="/addcategory">Add Category</NavLink> */}
-
-    
-        <NavLink to="/register"> Register </NavLink>
         <NavLink to="/addproduct"> Add Product </NavLink>
         <NavLink to="/addcategory"> Add Category </NavLink>
         <NavLink to="api/products">Products</NavLink>
@@ -21,15 +18,24 @@ const Navbar = ({ user, handleLogOut }) => {
       </div>
     </nav>
   )
+
   const publicOptions = (
     <nav>
-      <NavLink to="/"> Home </NavLink>
+      <NavLink to="/">Home</NavLink>
+      <NavLink to="/event">Event</NavLink>
+      <NavLink to="/showevents">Show Event</NavLink>
+      <NavLink to="/addproduct">Add Product</NavLink>
+      <NavLink to="/addcategory">Add Category</NavLink>
+      <NavLink to="/signin">Login</NavLink>
+      <NavLink to="/register">Register</NavLink>
       <NavLink to="api/productS">Products</NavLink>
-      <NavLink to="/signin"> Login </NavLink> 
-      <NavLink to="/register"> Register </NavLink>
+
     </nav>
   )
-  return <header className="Navbar">{userOptions || publicOptions}</header>
+
+  return ( 
+  <header className="Navbar">{userOptions || publicOptions}</header> 
+  )
 }
 
 export default Navbar

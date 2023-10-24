@@ -1,4 +1,9 @@
+.main{
+height:100vh;
+margin:0;
+padding: 0;
 
+}
 .Navbar {
   background-color: #333;
   color: #fff;
@@ -71,3 +76,16 @@
   padding: 10px 20px; 
   font-size: 16px;
 }
+
+
+
+.map-container{
+  width: 40%;
+  height: 80vh;
+}
+
+
+
+
+
+
