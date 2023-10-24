@@ -14,9 +14,9 @@ import { CheckSession } from "./services/Auth"
 import { useEffect } from "react"
 import axios from "axios"
 import Order from "./Pages/Order"
-import Footer from './Components/footer'
-import Event from './Pages/Event'
-import ShowEvent from './Pages/ShowEvent'
+import Footer from "./Components/footer"
+import Event from "./Pages/Event"
+import ShowEvent from "./Pages/ShowEvent"
 
 function App() {
   const [user, setUser] = useState(null)
@@ -68,11 +68,11 @@ function App() {
     }
   }
   useEffect(() => {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token")
     if (token) {
       checkToken()
-  }
-  })
+    }
+  }, [])
 
   const handleClick = async (event, pro_id) => {
     console.log("pro_id", pro_id)

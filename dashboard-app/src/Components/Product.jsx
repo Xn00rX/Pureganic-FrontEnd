@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 
 const Product = ({ user, handleClick }) => {
+  const [searchField, setSearchField] = useState("")
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
 
@@ -11,6 +12,16 @@ const Product = ({ user, handleClick }) => {
     setProducts(response.data)
     console.log(response.data)
     setFilteredProducts(response.data)
+  }
+
+  const handleChange = (e) => {
+    const searchText = e.target.value
+    setSearchField(searchText)
+
+    const filtered = products.filter((product) =>
+      product.productName.toLowerCase().includes(searchText.toLowerCase())
+    )
+    setFilteredProducts(filtered)
   }
 
   useEffect(() => {
