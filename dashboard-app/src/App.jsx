@@ -4,7 +4,10 @@ import './App.css'
 import Navbar from './Components/Navbar'
 import Home from './Pages/Home'
 import ProductList from './Pages/Productlist'
-import Product from './Components/Product'
+import ViewProducts from './Components/ViewProducts'
+import ProductDetails from './Pages/ProductDetails'
+import ViewCategories from './Components/ViewCategories'
+
 import Cart from './Pages/Cart'
 import AddProduct from './Components/AddProduct'
 import AddCatgeory from './Components/AddCategory'
@@ -55,8 +58,17 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Product />} />
-          <Route path="/productdelete/:product_id" element={<Product />} />
+          <Route path="/viewproducts" element={<ViewProducts />} />
+          <Route path="/viewcategories" element={<ViewCategories />} />
+          <Route path="/productdelete/:product_id" element={<ViewProducts />} />
+          <Route
+            path="/productdetails/:product_id"
+            element={<ProductDetails />}
+          />
+          <Route
+            path="/categorydelete/:category_id"
+            element={<ViewCategories />}
+          />
           <Route
             path="/productupdate/:product_id"
             element={<UpdateProduct />}

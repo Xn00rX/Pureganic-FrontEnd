@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 
-const Product = () => {
+const ViewProducts = () => {
   const [products, setProducts] = useState([])
 
   const getProducts = async () => {
@@ -13,7 +13,7 @@ const Product = () => {
 
   useEffect(() => {
     getProducts()
-  }, [])
+  }, [products])
 
   const { product_id } = useParams()
   const deleteProduct = (product_id) => {
@@ -21,7 +21,9 @@ const Product = () => {
       `http://localhost:4000/apiproduct/` + product_id
     )
   }
-
+  const ProductDetail = (product_id) => {
+    const response = axios.get(`http://localhost:4000/apiproduct/` + product_id)
+  }
   const imageStyle = {
     width: '80px',
     height: '80px'
@@ -54,10 +56,17 @@ const Product = () => {
                     style={imageStyle}
                   />
                 </td>
-                <td>{product.productName}</td>
+
+                <td>
+                  {' '}
+                  <Link to={`/productdetails/${product._id}`}>
+                    {product.productName}
+                  </Link>
+                </td>
                 <td>{product.productPrice}</td>
                 <td>{product.productDesc}</td>
-                <td>{product.category}</td>
+                {console.log('check heereee ', product.category)}
+                <td>{product.category.catgName}</td>
                 <td>
                   <Link to={`/productdelete/${product._id}`}>
                     <button
@@ -84,4 +93,4 @@ const Product = () => {
   )
 }
 
-export default Product
+export default ViewProducts

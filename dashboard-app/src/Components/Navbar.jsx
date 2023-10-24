@@ -11,7 +11,8 @@ const Navbar = ({ user, handleLogOut }) => {
         <NavLink to="/register"> Register </NavLink>
         <NavLink to="/addproduct"> Add Product </NavLink>
         <NavLink to="/addcategory"> Add Category </NavLink>
-        <NavLink to="/products">Products</NavLink>
+        <NavLink to="/viewproducts">View Products</NavLink>
+        <NavLink to="/viewcategories">View Categories</NavLink>
         <NavLink to="/userprofile">User Profile</NavLink>
         <NavLink onClick={handleLogOut} to="/">
           Sign Out
@@ -22,7 +23,8 @@ const Navbar = ({ user, handleLogOut }) => {
   const publicOptions = (
     <nav>
       <NavLink to="/"> Home </NavLink>
-      <NavLink to="/productS">Products</NavLink>
+      <NavLink to="/viewproducts">View Products</NavLink>
+      <NavLink to="/viewcategories">View Categories</NavLink>
       <NavLink to="/signin"> Login </NavLink>
       <NavLink to="/register"> Register </NavLink>
     </nav>
