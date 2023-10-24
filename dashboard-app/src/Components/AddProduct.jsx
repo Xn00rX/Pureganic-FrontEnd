@@ -43,6 +43,7 @@ const AddProduct = () => {
       category: selectedCategory
     }
     try {
+      console.log(data)
       const response = await axios.post(
         'http://localhost:4000/apiproduct',
         data,

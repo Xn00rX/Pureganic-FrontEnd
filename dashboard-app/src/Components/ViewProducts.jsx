@@ -13,7 +13,7 @@ const ViewProducts = () => {
 
   useEffect(() => {
     getProducts()
-  }, [products])
+  }, [])
 
   const { product_id } = useParams()
   const deleteProduct = (product_id) => {
