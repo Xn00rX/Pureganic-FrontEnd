@@ -7,12 +7,12 @@ const Cart = ({ user }) => {
   const [cart, setcart] = useState([])
   const [chooseProduct, setChooseProduct] = useState()
   const [totalPrice, setTotalPrice] = useState()
-  // let { id } = useParams()
+  // let id = user.id
 
   const getCartProducts = async () => {
-    console.log("my id " + user.id)
+    console.log("my id ", user.id)
     const response = await axios.get(`http://localhost:4000/cart/${user.id}`)
-    console.log("testt  " + response.data.cartProducts)
+    console.log("testt  ", response.data.cartProducts)
     setcart(response.data.cartProducts)
     // console.log("help" + response)
   }
@@ -29,7 +29,7 @@ const Cart = ({ user }) => {
       )
       setChooseProduct(response)
     } else if (event.target.innerText === "-") {
-      console.log("inMinuis" + pro_id)
+      console.log("inMinuis", pro_id)
       const response = await axios.post(
         `http://localhost:4000/cart/${user.id}`,
         {
@@ -41,23 +41,38 @@ const Cart = ({ user }) => {
     }
   }
 
+  const pay = async () => {
+    const response = await axios.post(`http://localhost:4000/orders/${user.id}`)
+    console.log(response)
+  }
+
   useEffect(() => {
     getCartProducts()
   }, [chooseProduct])
 
   return (
     <div>
-      {cart.map((pro) => (
-        <div key={pro._id} id={pro.product._id}>
-          <h1>{pro.product.productName}</h1>
-          <h3>Price: ${pro.product.productPrice * pro.quantity}</h3>
-          <h1>{pro.quantity}</h1>
-          <button onClick={(e) => handleClick(e, pro.product._id)}>+</button>
-          <button onClick={(e) => handleClick(e, pro.product._id)}>-</button>
+      {cart ? (
+        <div>
+          {cart.map((pro) => (
+            <div key={pro._id} id={pro.product._id}>
+              <h1>{pro.product.productName}</h1>
+              <h3>Price: ${pro.product.productPrice * pro.quantity}</h3>
+              <h1>{pro.quantity}</h1>
+              <button onClick={(e) => handleClick(e, pro.product._id)}>
+                +
+              </button>
+              <button onClick={(e) => handleClick(e, pro.product._id)}>
+                -
+              </button>
+            </div>
+          ))}
+          {/* <h1>Total Price: ${totalPrice}</h1> */}
+          <button onClick={pay}>Pay</button>
         </div>
-      ))}
-      {/* <h1>Total Price: ${totalPrice}</h1> */}
-      <button>Pay</button>
+      ) : (
+        console.log("h")
+      )}
     </div>
   )
 }

@@ -8,9 +8,8 @@ const Navbar = ({ user, handleLogOut }) => {
         <NavLink to="/"> Home </NavLink>
         {/* <NavLink to="/addcategory">Add Category</NavLink> */}
         {/* <NavLink to="/addcategory">Add Category</NavLink> */}
-        <NavLink to="/signin"> Login </NavLink>
-        <NavLink to="/register"> Register </NavLink>
-        <NavLink to="api/products">Products</NavLink>
+
+        <NavLink to="/api/products">Products</NavLink>
         <NavLink to="/userprofile">User Profile</NavLink>
         <NavLink to="/cart">Cart</NavLink>
         <NavLink to="/orders">Orders</NavLink>
@@ -24,8 +23,6 @@ const Navbar = ({ user, handleLogOut }) => {
     <nav>
       <NavLink to="/"> Home </NavLink>
       <NavLink to="api/products">Products</NavLink>
-      <NavLink to="/addproduct"> Add Product </NavLink>
-      <NavLink to="/addcategory"> Add Category </NavLink>
       <NavLink to="/signin"> Login </NavLink>
       <NavLink to="/register"> Register </NavLink>
     </nav>

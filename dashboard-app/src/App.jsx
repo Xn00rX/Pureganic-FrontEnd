@@ -53,7 +53,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/api/products" element={<ProductList />} />
+          <Route path="/api/products" element={<ProductList user={user} />} />
           <Route path="/addproduct" element={<AddProduct />} />
           <Route path="/cart" element={<Cart user={user} />} />
           <Route path="/orders" element={<Order user={user} />} />

@@ -22,15 +22,21 @@ const Order = ({ user }) => {
 
   return (
     <div>
-      {orders.map((order) => (
-        <div>
-          <h5>OrderNo.</h5>
-          <h6>{order._id}</h6>
-          {order.orderItems.map((o) => (
-            <h3>{o.quantity}</h3>
-          ))}
-        </div>
-      ))}
+      {orders
+        ? orders.map((order) => (
+            <div key={order._id}>
+              <h5>OrderNo.</h5>
+              <h6>{order._id}</h6>
+              {order.orderItems.map((or) => (
+                <div key={or._id}>
+                  <h3>{or.quantity}</h3>
+                  <h3>{or.product.productName}</h3>
+                  <h3>Price:{or.productPrice}</h3>
+                </div>
+              ))}
+            </div>
+          ))
+        : console.log("hello")}
     </div>
   )
 }
