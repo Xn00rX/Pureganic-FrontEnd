@@ -13,6 +13,11 @@ const Navbar = ({ user, handleLogOut, totalQuantity }) => {
         {/* <NavLink to="/addcategory">Add Category</NavLink> */}
 
         <NavLink to="/api/products">Products</NavLink>
+        <NavLink to="/register"> Register </NavLink>
+        <NavLink to="/addproducts"> Add Product </NavLink>
+        <NavLink to="/addcategory"> Add Category </NavLink>
+        <NavLink to="/viewproducts">View Products</NavLink>
+        <NavLink to="/viewcategories">View Categories</NavLink>
         <NavLink to="/userprofile">User Profile</NavLink>
         <NavLink to="/cart" className="cart">
           <span className="count">{totalQuantity}</span>
@@ -36,14 +41,14 @@ const Navbar = ({ user, handleLogOut, totalQuantity }) => {
       <NavLink to="/showevents">Show Event</NavLink>
       <NavLink to="/addproduct">Add Product</NavLink>
       <NavLink to="/addcategory">Add Category</NavLink>
+      <NavLink to="/viewproducts">View Products</NavLink>
+      <NavLink to="/viewcategories">View Categories</NavLink>
       <NavLink to="/signin"> Login </NavLink>
       <NavLink to="/register"> Register </NavLink>
     </nav>
   )
 
-  return ( 
-  <header className="Navbar">{userOptions || publicOptions}</header> 
-  )
+  return <header className="Navbar">{userOptions || publicOptions}</header>
 }
 
 export default Navbar

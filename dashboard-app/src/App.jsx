@@ -17,6 +17,11 @@ import Order from "./Pages/Order"
 import Footer from "./Components/footer"
 import Event from "./Pages/Event"
 import ShowEvent from "./Pages/ShowEvent"
+import ViewProducts from "./Components/ViewProducts"
+import ProductDetails from "./Pages/ProductDetails"
+import ViewCategories from "./Components/ViewCategories"
+import UpdateProduct from "./Pages/UpdateProduct"
+import AddCatgeory from "./Components/AddCategory"
 
 function App() {
   const [user, setUser] = useState(null)
@@ -153,6 +158,22 @@ function App() {
             }
           />
           <Route path="/orders" element={<Order user={user} />} />
+          <Route path="/viewproducts" element={<ViewProducts />} />
+          <Route path="/viewcategories" element={<ViewCategories />} />
+          <Route path="/productdelete/:product_id" element={<ViewProducts />} />
+          <Route
+            path="/productdetails/:product_id"
+            element={<ProductDetails />}
+          />
+          <Route
+            path="/categorydelete/:category_id"
+            element={<ViewCategories />}
+          />
+          <Route
+            path="/productupdate/:product_id"
+            element={<UpdateProduct />}
+          />
+          <Route path="/addcategory" element={<AddCatgeory />} />
           <Route path="/signin" element={<Login setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/userprofile" element={<Userprofile user={user} />} />
