@@ -46,7 +46,8 @@ function App() {
   return (
     <div>
       <Navbar user={user} handleLogOut={handleLogOut} />
-      <main className='main'>
+      <main
+       className='main'>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/event" element={<Event />} />
