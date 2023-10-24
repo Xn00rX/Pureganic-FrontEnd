@@ -1,11 +1,11 @@
 import Product from "../Components/Product"
 
-const ProductList = ({ user }) => {
+const ProductList = ({ user, handleClick }) => {
   return (
     <div>
       {user ? (
         <div>
-          <Product user={user} />
+          <Product user={user} handleClick={handleClick} />
         </div>
       ) : (
         <div>{<Product />}</div>
