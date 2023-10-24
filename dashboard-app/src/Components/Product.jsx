@@ -4,9 +4,13 @@ import axios from "axios"
 
 const Product = ({ user, handleClick }) => {
   const [products, setProducts] = useState([])
+  const [filteredProducts, setFilteredProducts] = useState([])
+
   const getProduct = async () => {
     const response = await axios.get("/api/products")
     setProducts(response.data)
+    console.log(response.data)
+    setFilteredProducts(response.data)
   }
 
   useEffect(() => {
@@ -15,7 +19,13 @@ const Product = ({ user, handleClick }) => {
 
   return (
     <>
-      {products.map((product) => (
+      <input
+        type="search"
+        placeholder="Search Products"
+        value={searchField}
+        onChange={handleChange}
+      />
+      {filteredProducts.map((product) => (
         <div key={product._id}>
           {/* <img src={product.image} alt={product.name} /> */}
           <h2>{product._id}</h2>

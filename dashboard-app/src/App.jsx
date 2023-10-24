@@ -14,6 +14,9 @@ import { CheckSession } from "./services/Auth"
 import { useEffect } from "react"
 import axios from "axios"
 import Order from "./Pages/Order"
+import Footer from './Components/footer'
+import Event from './Pages/Event'
+import ShowEvent from './Pages/ShowEvent'
 
 function App() {
   const [user, setUser] = useState(null)
@@ -46,7 +49,6 @@ function App() {
 
   const checkToken = async () => {
     const user = await CheckSession()
-
     console.log(user)
     console.log(user.id)
     await setUser(user)
@@ -65,6 +67,12 @@ function App() {
       console.log("not getting the response")
     }
   }
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      checkToken()
+  }
+  })
 
   const handleClick = async (event, pro_id) => {
     console.log("pro_id", pro_id)
@@ -148,6 +156,8 @@ function App() {
           <Route path="/signin" element={<Login setUser={setUser} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/userprofile" element={<Userprofile user={user} />} />
+          <Route path="/event" element={<Event />} />
+          <Route path="/showevents" element={<ShowEvent />} />
 
           <Route
             path="/passwordchange"
@@ -155,6 +165,7 @@ function App() {
           />
         </Routes>
       </main>
+      <Footer></Footer>
     </div>
   )
 }

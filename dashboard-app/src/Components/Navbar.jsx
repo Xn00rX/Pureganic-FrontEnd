@@ -27,15 +27,23 @@ const Navbar = ({ user, handleLogOut, totalQuantity }) => {
       </div>
     </nav>
   )
+
   const publicOptions = (
     <nav>
       <NavLink to="/"> Home </NavLink>
       <NavLink to="api/products">Products</NavLink>
+      <NavLink to="/event">Event</NavLink>
+      <NavLink to="/showevents">Show Event</NavLink>
+      <NavLink to="/addproduct">Add Product</NavLink>
+      <NavLink to="/addcategory">Add Category</NavLink>
       <NavLink to="/signin"> Login </NavLink>
       <NavLink to="/register"> Register </NavLink>
     </nav>
   )
-  return <header className="Navbar">{userOptions || publicOptions}</header>
+
+  return ( 
+  <header className="Navbar">{userOptions || publicOptions}</header> 
+  )
 }
 
 export default Navbar

@@ -1,4 +1,9 @@
+.main{
+height:100vh;
+margin:0;
+padding: 0;
 
+}
 .Navbar {
   background-color: #333;
   color: #fff;
@@ -72,6 +77,7 @@
   font-size: 16px;
 }
 
+<<<<<<< HEAD
 .cart {
   position: relative;
   /* display: block; */
@@ -104,3 +110,17 @@
     font-weight: bold;
   }
 }
+=======
+
+
+.map-container{
+  width: 40%;
+  height: 80vh;
+}
+
+
+
+
+
+
+>>>>>>> 2b5f590ed56e7db469345600e8a8109de6fb9aeb
