@@ -1,27 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { RegisterUser } from '../services/Auth'
+import React, { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { RegisterUser } from "../services/Auth"
 
 const Register = () => {
   let navigate = useNavigate()
   const [userData, setUserData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    image: '',
-    gender: 'No Comments',
-    role: 'buyer',
-    phonenumber: '',
-    confirmPassword: ''
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    image: "",
+    gender: "No Comments",
+    role: "buyer",
+    phonenumber: "",
+    confirmPassword: "",
   })
 
-  const [passwordError, setPasswordError] = useState('')
+  const [passwordError, setPasswordError] = useState("")
   useEffect(() => {
     if (userData.password !== userData.confirmPassword) {
       setPasswordError("Passwords don't match")
     } else {
-      setPasswordError('')
+      setPasswordError("")
     }
   }, [userData.password, userData.confirmPassword])
 
@@ -29,47 +29,48 @@ const Register = () => {
     const { name, value } = e.target
     setUserData({
       ...userData,
-      [name]: value
+      [name]: value,
     })
   }
 
   const handleImageChange = (e) => {
     setUserData({
       ...userData,
-      image: e.target.files[0]
+      image: e.target.files[0],
     })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData()
-    formData.append('firstName', userData.firstName)
-    formData.append('lastName', userData.lastName)
-    formData.append('email', userData.email)
-    formData.append('password', userData.password)
-    formData.append('image', userData.image)
-    formData.append('gender', userData.gender)
-    formData.append('role', userData.role)
-    formData.append('phonenumber', userData.phonenumber)
+    formData.append("firstName", userData.firstName)
+    formData.append("lastName", userData.lastName)
+    formData.append("email", userData.email)
+    formData.append("password", userData.password)
+    formData.append("image", userData.image)
+    formData.append("gender", userData.gender)
+    formData.append("role", userData.role)
+    formData.append("phonenumber", userData.phonenumber)
 
     try {
       const response = await RegisterUser(formData)
-      console.log('Response:', response)
+      console.log("Response:", response)
 
       setUserData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        image: '',
-        gender: 'No Comments',
-        role: 'buyer',
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        image: "",
+        gender: "No Comments",
+        role: "buyer",
         phonenumber: 0,
-        confirmPassword: ''
+        confirmPassword: "",
       })
     } catch (error) {
-      console.error('Error:', error)
+      console.error("Error:", error)
     }
+    navigate("/signin")
   }
 
   return (
@@ -121,7 +122,7 @@ const Register = () => {
           required
         />
       </div>
-      {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
+      {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
       <div>
         <label>Upload Image:</label>
         <input
@@ -156,7 +157,7 @@ const Register = () => {
           type="tel"
           name="phonenumber"
           placeholder="+97330000000"
-          value={userData.phonenumber || '+973'}
+          value={userData.phonenumber || "+973"}
           onChange={handleInputChange}
           pattern="\+973[0-9]{8}"
           required
