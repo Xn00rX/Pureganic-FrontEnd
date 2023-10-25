@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 
-const ViewProducts = () => {
+const ViewProducts = ({user}) => {
   const [products, setProducts] = useState([])
 
   const getProducts = async () => {
@@ -33,7 +33,10 @@ const ViewProducts = () => {
   }
 
   return (
-    <div>
+    <>
+ {user ? (<>
+ 
+  <div>
       {products.map((product) => (
         <div key={product._id} value={product._id}>
           <table className="table table-dark table-sm" style={tableStyle}>
@@ -90,6 +93,10 @@ const ViewProducts = () => {
         </div>
       ))}
     </div>
+ 
+ </>):(<h1>Login</h1>)}
+  
+  </>
   )
 }
 

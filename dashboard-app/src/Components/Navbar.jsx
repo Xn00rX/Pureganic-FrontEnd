@@ -1,31 +1,29 @@
-import { NavLink } from "react-router-dom"
-import { AiOutlineShoppingCart } from "react-icons/Ai"
-import { useState, useEffect } from "react"
-import axios from "axios"
-import "../App.css"
+import { NavLink } from 'react-router-dom'
+import { AiOutlineShoppingCart } from 'react-icons/Ai'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import '../App.css'
 
-const Navbar = ({ user, handleLogOut, totalQuantity }) => {
-  const userOptions = user && (
+const Navbar = ({ user, userType, handleLogOut, totalQuantity }) => {
+  const adminOptions = userType === 'seller' && (
     <nav className="Navbar">
       <div>
         <NavLink to="/"> Home </NavLink>
-        {/* <NavLink to="/addcategory">Add Category</NavLink> */}
-        {/* <NavLink to="/addcategory">Add Category</NavLink> */}
-
         <NavLink to="/api/products">Products</NavLink>
-        <NavLink to="/register"> Register </NavLink>
+        <NavLink to="/showevents">Explore Events</NavLink>
         <NavLink to="/addproducts"> Add Product </NavLink>
         <NavLink to="/addcategory"> Add Category </NavLink>
+        <NavLink to="/event">Event</NavLink>
         <NavLink to="/viewproducts">View Products</NavLink>
         <NavLink to="/viewcategories">View Categories</NavLink>
-        <NavLink to="/userprofile">User Profile</NavLink>
+        <NavLink to="/orders">Orders</NavLink>
         <NavLink to="/cart" className="cart">
           <span className="count">{totalQuantity}</span>
           <i className="material-icons">
             <AiOutlineShoppingCart />
           </i>
         </NavLink>
-        <NavLink to="/orders">Orders</NavLink>
+        <NavLink to="/userprofile">User Profile</NavLink>
         <NavLink onClick={handleLogOut} to="/">
           Sign Out
         </NavLink>
@@ -33,22 +31,45 @@ const Navbar = ({ user, handleLogOut, totalQuantity }) => {
     </nav>
   )
 
-  const publicOptions = (
+  const userOptions = user && userType !== 'seller' && (
+    <nav className="Navbar">
+      <div>
+        <NavLink to="/"> Home </NavLink>
+        <NavLink to="/api/products">Products</NavLink>
+        <NavLink to="/showevents">Explore Events</NavLink>
+
+        <NavLink to="/orders">Orders</NavLink>
+        <NavLink to="/cart" className="cart">
+          <span className="count">{totalQuantity}</span>
+          <i className="material-icons">
+            <AiOutlineShoppingCart />
+          </i>
+        </NavLink>
+        <NavLink to="/userprofile">User Profile</NavLink>
+        <NavLink onClick={handleLogOut} to="/">
+          Sign Out
+        </NavLink>
+      </div>
+    </nav>
+  )
+
+  console.log(userType)
+
+  const publicOptions = !user && userType !== 'seller' && (
     <nav>
       <NavLink to="/"> Home </NavLink>
       <NavLink to="api/products">Products</NavLink>
-      <NavLink to="/event">Event</NavLink>
-      <NavLink to="/showevents">Show Event</NavLink>
-      <NavLink to="/addproduct">Add Product</NavLink>
-      <NavLink to="/addcategory">Add Category</NavLink>
-      <NavLink to="/viewproducts">View Products</NavLink>
-      <NavLink to="/viewcategories">View Categories</NavLink>
+      <NavLink to="/showevents">Explore Events</NavLink>
       <NavLink to="/signin"> Login </NavLink>
       <NavLink to="/register"> Register </NavLink>
     </nav>
   )
 
-  return <header className="Navbar">{userOptions || publicOptions}</header>
+  return (
+    <header className="Navbar">
+      {publicOptions || adminOptions || userOptions}
+    </header>
+  )
 }
 
 export default Navbar

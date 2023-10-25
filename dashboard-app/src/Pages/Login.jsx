@@ -33,7 +33,7 @@ const Login = ({ setUser }) => {
         password: '',
       })
       setUser(payload)
-      navigate('/products')
+      navigate('/')
     } catch (error) {
       console.error('Error:', error)
       setError('Login failed')

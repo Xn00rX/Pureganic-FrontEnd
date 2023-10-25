@@ -67,7 +67,10 @@ const AddProduct = ({user}) => {
   }
 
   return (
-    <div>
+    <>
+    {user? (<>
+    
+      <div>
       <h1> Add Product</h1>
       <div className="shadow p-3 mb-5 bg-body-tertiary rounded myForms">
         <form onSubmit={handleSubmit}>
@@ -132,6 +135,13 @@ const AddProduct = ({user}) => {
         </form>
       </div>
     </div>
+    
+    </>):(<>
+    
+    <h1>Login</h1>
+    </>)}
+    
+    </>
   )
 }
 
