@@ -15,10 +15,20 @@ const Home = () => {
   return (
     <div>
       <div className="Home">
-        <p className="HomeHeading">
-          we create your perfect <span>organic world</span>
-        </p>
-        <p></p>
+        <div className="HomeParent">
+          <p className="HomeHeading">
+            We create your perfect
+            <span className="changeColor"> farm</span>
+          </p>
+          <p className="homeParagraph">
+            PureGanic offers a wide range of premium quality organic food
+            products that are naturally grown and free from harmful chemicals,
+            additives, and preservatives.
+          </p>
+          <Link to={'/products'}>
+            <button className="btn btn-light hpbtn">Get started...</button>
+          </Link>
+        </div>
       </div>
       <div>
         <img src={SideBar} style={imageStyle} />

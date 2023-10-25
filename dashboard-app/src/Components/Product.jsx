@@ -51,14 +51,6 @@ const Product = ({ user, handleClick }) => {
         <p>"Fresh, organic, and natural just the way you like it"</p>
       </div>
 
-      <div>
-        <label>Sort By: </label>
-        <select onChange={handleSortChange} value={sortOrder}>
-          <option value="">-- Select --</option>
-          <option value="high">High Price</option>
-          <option value="low">Low Price</option>
-        </select>
-      </div>
       <input
         type="search"
         placeholder="Search Products"
@@ -66,6 +58,14 @@ const Product = ({ user, handleClick }) => {
         onChange={handleChange}
         className="btn btn-outline-light searchinput"
       />
+
+      <label>Sort By: </label>
+      <select onChange={handleSortChange} value={sortOrder}>
+        <option value="">-- Select --</option>
+        <option value="high">High Price</option>
+        <option value="low">Low Price</option>
+      </select>
+
       <div className="ProductContainerParent">
         {filteredProducts.map((product) => (
           <div key={product._id} className="productContainer">
@@ -75,7 +75,7 @@ const Product = ({ user, handleClick }) => {
               style={imageStyle}
             />
             <Link to={`/productdetails/${product._id}`}>
-              <h3>{product.productName}</h3>
+              <h3 className="producttitle">{product.productName}</h3>
             </Link>
 
             <p>Price: BHD {product.productPrice}</p>
