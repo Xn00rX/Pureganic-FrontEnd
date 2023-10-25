@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { SignInUser } from '../services/Auth'
+import plant from '../images/plant.gif'
 
 const Login = ({ setUser }) => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: '',
-    password: '',
+    password: ''
   })
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -15,7 +16,7 @@ const Login = ({ setUser }) => {
     const { name, value } = e.target
     setFormData({
       ...formData,
-      [name]: value,
+      [name]: value
     })
   }
 
@@ -30,7 +31,7 @@ const Login = ({ setUser }) => {
       console.log(payload.userimage)
       setFormData({
         email: '',
-        password: '',
+        password: ''
       })
       setUser(payload)
       navigate('/products')
@@ -43,28 +44,51 @@ const Login = ({ setUser }) => {
   }
 
   return (
-    <div>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleInputChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleInputChange}
-        />
-        <button type="submit" disabled={loading}>
-          {loading ? 'Logging in...' : 'Login'}
-        </button>
-      </form>
-      {error && <p>{error}</p>}
+    <div className="LoginPage">
+      <div className="LoginParentHide"></div>
+      <div className="LoginParent">
+        <div className="LoginInfo">
+          <br />
+          <br />
+          <h1 className="LoginHeading">
+            Welcome back to <span className="changeColor">PureGanic</span>
+          </h1>
+          <br />
+          <br />
+          <form onSubmit={handleSubmit}>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className="form-control myInput"
+            />
+            <br />
+            <br />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleInputChange}
+              className="form-control myInput"
+            />
+            <br />
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn btn-outline-success myBtns"
+            >
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+          </form>
+        </div>
+        {error && <p>{error}</p>}
+        <div className="plantgif">
+          <img src={plant} />
+        </div>
+      </div>
     </div>
   )
 }

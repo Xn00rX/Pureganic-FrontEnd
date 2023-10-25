@@ -1,20 +1,28 @@
-import { NavLink } from "react-router-dom"
-import { AiOutlineShoppingCart } from "react-icons/Ai"
-import { useState, useEffect } from "react"
-import axios from "axios"
-import "../App.css"
+import { NavLink } from 'react-router-dom'
+import { AiOutlineShoppingCart } from 'react-icons/Ai'
+import logo from '../images/logo.png'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import '../App.css'
 
 const Navbar = ({ user, handleLogOut, totalQuantity }) => {
+  const imageStyle = {
+    width: '200px',
+    height: '43px'
+  }
+
   const userOptions = user && (
     <nav className="Navbar">
       <div>
-        <NavLink to="/"> Home </NavLink>
+        <NavLink to="/">
+          <img src={logo} style={imageStyle} />
+        </NavLink>
         {/* <NavLink to="/addcategory">Add Category</NavLink> */}
         {/* <NavLink to="/addcategory">Add Category</NavLink> */}
 
-        <NavLink to="/api/products">Products</NavLink>
+        <NavLink to="/products">Products</NavLink>
         <NavLink to="/register"> Register </NavLink>
-        <NavLink to="/addproducts"> Add Product </NavLink>
+        <NavLink to="/addproduct"> Add Product </NavLink>
         <NavLink to="/addcategory"> Add Category </NavLink>
         <NavLink to="/viewproducts">View Products</NavLink>
         <NavLink to="/viewcategories">View Categories</NavLink>
@@ -35,8 +43,10 @@ const Navbar = ({ user, handleLogOut, totalQuantity }) => {
 
   const publicOptions = (
     <nav>
-      <NavLink to="/"> Home </NavLink>
-      <NavLink to="api/products">Products</NavLink>
+      <NavLink to="/">
+        <img src={logo} style={imageStyle} />
+      </NavLink>
+      <NavLink to="/products">Products</NavLink>
       <NavLink to="/event">Event</NavLink>
       <NavLink to="/showevents">Show Event</NavLink>
       <NavLink to="/addproduct">Add Product</NavLink>

@@ -27,19 +27,17 @@ const ProductDetails = () => {
 
   return (
     <div>
-      {
-        <div key={product._id} value={product._id}>
-          <img
-            src={` http://localhost:4000${product.productImage}`}
-            alt="product-img"
-            style={imageStyle}
-          />
-          <h2>{product.productName}</h2>
-          <h3>{product.productPrice}</h3>
-          <p>{product.productDesc}</p>
-          <button>Add To Cart</button>
-        </div>
-      }
+      <div key={product._id} value={product._id}>
+        <img
+          src={` http://localhost:4000${product.productImage}`}
+          alt="product-img"
+          style={imageStyle}
+        />
+        <h2>{product.productName}</h2>
+        <h3>{product.productPrice}</h3>
+        <p>{product.productDesc}</p>
+        <button>Add To Cart</button>
+      </div>
     </div>
   )
 }

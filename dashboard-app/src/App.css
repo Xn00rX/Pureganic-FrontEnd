@@ -1,35 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@700&display=swap');
+
+
 .main{
 height:100vh;
 margin:0;
 padding: 0;
-
 }
+
+/* Navbar starts here */
 .Navbar {
-  background-color: #052500;
   color: #fff;
   padding: 10px;
+  font-family: Urbanist;
+  font-weight: 100;
+  position: absolute;
+  width: max-content;
+  
 }
-
 
 .Navbar a {
   text-decoration: none;
   color: #fff;
   margin-right: 15px;
-  font-weight: bold;
 }
-
 
 .Navbar a:hover {
-  color: #f00;
+  color: #4AD016;
 }
 
-
+/* 
 .myForms {
   width: 70%;
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 .Home {
   display: flex;
   flex-direction: column;
@@ -38,7 +45,7 @@ padding: 0;
   height: 100vh; 
   background-color: #f0f0f0; 
 }
-.form {
+/* .form {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
@@ -69,7 +76,7 @@ padding: 0;
 
 .form button[type="submit"]:hover {
   background-color: #0056b3;
-}
+} */
 
 .Home button {
   margin: 10px; 
@@ -98,7 +105,7 @@ padding: 0;
     z-index: 2;
     font-size: 11px;
     border-radius: 50%;
-    background: #d60b28;
+    background: #4AD016;
     width: 16px;
     height: 16px;
     line-height:16px;
@@ -116,14 +123,145 @@ padding: 0;
   height: 80vh;
 }
 
-
-
-
-
+/* Homepage starts here */
 
 .Home {
-  background: url("https://i.imgur.com/7BdhGhO.jpg") no-repeat; background-size: cover;
+  background: url("https://i.postimg.cc/7hNdYBwY/bg1.jpg") no-repeat; background-size: cover;
   min-width: 100%;
   min-height: 100%;
 }
 
+
+/* Products Page starts here */
+.ProductList {
+  background-color: #052500;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: -1;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  height: 100%;
+   
+}
+
+.productContainer {
+  color: white;
+  width:max-content;
+  background-color: rgba(255, 255, 255, 0.1); 
+  text-align: center;
+  border-radius: 11px;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  padding-bottom: 3%;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-bottom: 10%;
+}
+
+.productContainer:hover {
+  transform: scale(1.2);
+}
+
+.ProductContainerParent {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.myBtns {
+  border-radius: 18px !important;
+  color: white !important;
+  border: #4AD016;
+  
+}
+
+.myBtns:hover {
+  
+  color: white !important;
+  background-color: #4AD016 !important;
+  
+}
+
+.searchinput {
+  display: block !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  margin-bottom: 5% !important;
+}
+
+.ProductListHeading {
+  display: block !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  margin-bottom: 5% !important;
+  font-family: Amatic SC;
+  color: wheat;
+  width: 39%;
+  text-align: center;
+  font-size: 50px;
+  padding-top: 10%;
+}
+
+/* Login Page starts here */
+.LoginPage {
+  background-color: #052500;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: -1;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+   
+}
+
+.LoginParentHide {
+  background-color: #052500;
+  padding-top: 7%;
+}
+
+.LoginParent {
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  background-color: rgba(255, 255, 255, 0.1); 
+  width: max-content;
+  border-radius: 11px;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  margin-bottom: 5% !important;
+  
+}
+
+.LoginInfo {
+  color: white;
+  width: 400px;
+  padding-left: 3%;
+  padding-right: 3%;
+
+
+}
+
+.plantgif {
+  color: white;
+  width: max-content;
+}
+
+.myInput {
+  background-color: rgba(255, 255, 255, 0.1) !important;; 
+  border-radius: 18px !important;
+  color: white !important;
+  border: 1px solid white !important;
+
+}
+
+.LoginHeading {
+  font-family:  Urbanist;
+  font-weight: 600;
+}
+
+.changeColor {
+  color:#4AD016;
+}

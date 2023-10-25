@@ -8,9 +8,7 @@ import '../App.css'
 const Home = () => {
   return (
     <div>
-      <div className="Home">
-        <h1>Homepage</h1>
-      </div>
+      <div className="Home"></div>
     </div>
   )
 }
