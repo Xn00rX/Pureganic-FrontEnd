@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { RegisterUser } from '../services/Auth'
+import plant from '../images/plant.gif'
 
 const Register = () => {
   let navigate = useNavigate()
@@ -73,98 +74,133 @@ const Register = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>First Name:</label>
-        <input
-          type="text"
-          name="firstName"
-          value={userData.firstName}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div>
-        <label>Last Name:</label>
-        <input
-          type="text"
-          name="lastName"
-          value={userData.lastName}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          name="email"
-          value={userData.email}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input
-          type="password"
-          name="password"
-          value={userData.password}
-          onChange={handleInputChange}
-        />
-      </div>
-      <div>
-        <label>Confirm Password:</label>
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          value={userData.confirmPassword}
-          onChange={handleInputChange}
-          required
-        />
-      </div>
-      {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
-      <div>
-        <label>Upload Image:</label>
-        <input
-          type="file"
-          name="image"
-          accept="image/*"
-          onChange={handleImageChange}
-        />
-      </div>
-      <div>
-        <label>Gender:</label>
-        <select
-          name="gender"
-          value={userData.gender}
-          onChange={handleInputChange}
-        >
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="No Comments">No Comments</option>
-        </select>
-      </div>
-      <div>
-        <label>Role:</label>
-        <select name="role" value={userData.role} onChange={handleInputChange}>
-          <option value="buyer">Buyer</option>
-          <option value="seller">Seller</option>
-        </select>
-      </div>
-      <div>
-        <label>Phone Number:</label>
-        <input
-          type="tel"
-          name="phonenumber"
-          placeholder="+97330000000"
-          value={userData.phonenumber || '+973'}
-          onChange={handleInputChange}
-          pattern="\+973[0-9]{8}"
-          required
-        />
-      </div>
+    <div className="RegPage">
+      <div className="LoginParentHide"></div>
+      <div className="RegParent">
+        <div className="LoginInfo">
+          <br />
+          <br />
+          <h1 className="LoginHeading">
+            Welcome to <span className="changeColor">PureGanic</span> world !
+          </h1>
+          <br />
+          <br />
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>First Name:</label>
+              <input
+                type="text"
+                name="firstName"
+                value={userData.firstName}
+                onChange={handleInputChange}
+                className="form-control myInput"
+              />
+            </div>
+            <div>
+              <label>Last Name:</label>
+              <input
+                type="text"
+                name="lastName"
+                value={userData.lastName}
+                onChange={handleInputChange}
+                className="form-control myInput"
+              />
+            </div>
+            <div>
+              <label>Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={userData.email}
+                onChange={handleInputChange}
+                className="form-control myInput"
+              />
+            </div>
+            <div>
+              <label>Password:</label>
+              <input
+                type="password"
+                name="password"
+                value={userData.password}
+                onChange={handleInputChange}
+                className="form-control myInput"
+              />
+            </div>
+            <div>
+              <label>Confirm Password:</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                className="form-control myInput"
+                value={userData.confirmPassword}
+                onChange={handleInputChange}
+                required
+              />
+            </div>
+            {passwordError && <p style={{ color: 'red' }}>{passwordError}</p>}
+            <div>
+              <label>Upload Image:</label>
+              <input
+                type="file"
+                className="form-control myInput"
+                name="image"
+                accept="image/*"
+                onChange={handleImageChange}
+              />
+            </div>
+            <div>
+              <label>Gender:</label>
+              <select
+                name="gender"
+                className="form-control myInput"
+                value={userData.gender}
+                onChange={handleInputChange}
+              >
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="No Comments">No Comments</option>
+              </select>
+            </div>
+            <div>
+              <label>Role:</label>
+              <select
+                name="role"
+                className="form-control myInput"
+                value={userData.role}
+                onChange={handleInputChange}
+              >
+                <option value="buyer">Buyer</option>
+                <option value="seller">Seller</option>
+              </select>
+            </div>
+            <div>
+              <label>Phone Number:</label>
+              <input
+                type="tel"
+                className="form-control myInput"
+                name="phonenumber"
+                placeholder="+97330000000"
+                value={userData.phonenumber || '+973'}
+                onChange={handleInputChange}
+                pattern="\+973[0-9]{8}"
+                required
+              />
+            </div>
+            <br />
 
-      <button type="submit">Sign Up</button>
-    </form>
+            <button className="btn btn-outline-success myBtns" type="submit">
+              Sign Up
+            </button>
+            <br />
+            <br />
+          </form>
+        </div>
+        <div className="plantgif">
+          <img src={plant} />
+        </div>
+      </div>
+    </div>
   )
 }
 
