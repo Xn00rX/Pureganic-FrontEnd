@@ -1,19 +1,19 @@
-import { NavLink } from 'react-router-dom'
-import { AiOutlineShoppingCart } from 'react-icons/Ai'
-import logo from '../images/logo.png'
-import { useState, useEffect } from 'react'
-import axios from 'axios'
-import '../App.css'
+import { NavLink } from "react-router-dom"
+import { AiOutlineShoppingCart } from "react-icons/Ai"
+import logo from "../images/logo.png"
+import { useState, useEffect } from "react"
+import axios from "axios"
+import "../App.css"
 
 const Navbar = ({ user, userType, handleLogOut, totalQuantity }) => {
   const imageStyle = {
-    width: '200px',
-    height: '43px'
+    width: "200px",
+    height: "43px",
   }
   console.log(user)
   console.log(userType)
   if (user) {
-    if (userType === 'buyer') {
+    if (userType === "buyer") {
       return (
         <nav className="Navbar">
           <div>
@@ -36,13 +36,13 @@ const Navbar = ({ user, userType, handleLogOut, totalQuantity }) => {
           </div>
         </nav>
       )
-    } else if (userType === 'seller') {
+    } else if (userType === "seller") {
       return (
         <nav className="Navbar">
           <div>
             <NavLink to="/">
               <img src={logo} style={imageStyle} />
-            </NavLink>{' '}
+            </NavLink>{" "}
             {/* <NavLink to="/api/products">Products</NavLink> */}
             {/* <NavLink to="/showevents">Explore Events</NavLink> */}
             <NavLink to="/addproduct"> Add Product </NavLink>
@@ -70,7 +70,7 @@ const Navbar = ({ user, userType, handleLogOut, totalQuantity }) => {
       <nav className="Navbar">
         <NavLink to="/">
           <img src={logo} style={imageStyle} />
-        </NavLink>{' '}
+        </NavLink>{" "}
         <NavLink to="/products">Products</NavLink>
         <NavLink to="/showevents">Explore Events</NavLink>
         <NavLink to="/signin"> Login </NavLink>

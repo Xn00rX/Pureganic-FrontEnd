@@ -39,13 +39,14 @@ const Order = ({ user }) => {
                   show && (
                     <span role="img" aria-label="sparkles">
                       <div key={or._id}>
-                        <h6>Quantity: {or.quantity}</h6>
-                        <h6>Product Name: {or.product.productName}</h6>
                         <img
                           src={` http://localhost:4000${or.product.productImage}`}
                           alt="product-img"
                           style={imageStyle}
                         />
+                        <h6>Product Name: {or.product.productName}</h6>
+                        <h6>Quantity: {or.quantity}</h6>
+
                         <h6>Price: {or.product.productPrice}</h6>
                       </div>
                     </span>
