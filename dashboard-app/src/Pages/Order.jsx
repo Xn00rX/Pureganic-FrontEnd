@@ -31,7 +31,8 @@ const Order = ({ user }) => {
                 <div key={or._id}>
                   <h3>{or.quantity}</h3>
                   <h3>{or.product.productName}</h3>
-                  <h3>Price:{or.productPrice}</h3>
+                  <h3>Price:{or.product.productPrice}</h3>
+                  <h3>Desc:{or.product.productDesc}</h3>
                 </div>
               ))}
             </div>

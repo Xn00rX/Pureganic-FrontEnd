@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import axios from 'axios'
+import { useState, useEffect } from "react"
+import { Link, useParams } from "react-router-dom"
+import axios from "axios"
 
-const ProductDetails = () => {
+const ProductDetails = ({ handleClick }) => {
   const [product, setProduct] = useState([])
 
   const imageStyle = {
-    width: '400px',
-    height: '400px'
+    width: "400px",
+    height: "400px",
   }
   const { product_id } = useParams()
 
@@ -37,7 +37,7 @@ const ProductDetails = () => {
           <h2>{product.productName}</h2>
           <h3>{product.productPrice}</h3>
           <p>{product.productDesc}</p>
-          <button>Add To Cart</button>
+          <button onClick={handleClick}>Add to Cart</button>
         </div>
       }
     </div>

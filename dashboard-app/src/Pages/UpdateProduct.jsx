@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
+import { useState, useEffect } from "react"
+import { useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import axios from "axios"
 
 const UpdateProduct = () => {
+  const navigate = useNavigate()
   const { product_id } = useParams()
   const [values, setValues] = useState({
-    productName: '',
-    productDesc: '',
-    productPrice: 0
+    productName: "",
+    productDesc: "",
+    productPrice: 0,
     // productImage: null
     // category: null
   })
@@ -20,7 +22,7 @@ const UpdateProduct = () => {
       ...values,
       productName: response.data.productName,
       productDesc: response.data.productDesc,
-      productPrice: response.data.productPrice
+      productPrice: response.data.productPrice,
       // productImage: response.data.productImage
     })
     console.log(response.data)
@@ -33,7 +35,7 @@ const UpdateProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const updateProductDetails = async () => {
-      console.log('heereeee ', product_id)
+      console.log("heereeee ", product_id)
       const response = await axios.put(
         `http://localhost:4000/apiproduct/` + product_id,
         values
@@ -42,18 +44,19 @@ const UpdateProduct = () => {
         ...values,
         productName: response.data.productName,
         productDesc: response.data.productDesc,
-        productPrice: response.data.productPrice
+        productPrice: response.data.productPrice,
         // productImage: response.data.productImage
       })
       console.log({
         ...values,
         productName: e.target.value,
         productDesc: e.target.value,
-        productPrice: e.target.value
+        productPrice: e.target.value,
         // productImage: e.target.value
       })
 
-      console.log('yessssss')
+      // console.log("yessssss")
+      navigate("/viewproducts")
     }
 
     updateProductDetails()
