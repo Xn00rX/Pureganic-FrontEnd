@@ -8,7 +8,7 @@ const ProductList = ({ user, handleClick }) => {
           <Product user={user} handleClick={handleClick} />
         </div>
       ) : (
-        <div>{<Product />}</div>
+        <div>{<Product handleClick={handleClick} />}</div>
       )}
     </div>
   )

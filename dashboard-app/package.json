@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@contentful/f36-components": "^4.52.3",
     "@reach/combobox": "^0.18.0",
     "@react-google-maps/api": "^2.19.2",
     "axios": "^1.5.1",
@@ -22,6 +23,8 @@
     "react-icons": "^4.11.0",
     "react-places-autocomplete": "^7.3.0",
     "react-router-dom": "^6.17.0",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.7.32",
     "use-places-autocomplete": "^4.0.1"
   },
   "devDependencies": {

@@ -15,9 +15,10 @@ const Home = () => {
   return (
     <div>
       <div className="Home">
-        <p>
+        <p className="HomeHeading">
           we create your perfect <span>organic world</span>
         </p>
+        <p></p>
       </div>
       <div>
         <img src={SideBar} style={imageStyle} />

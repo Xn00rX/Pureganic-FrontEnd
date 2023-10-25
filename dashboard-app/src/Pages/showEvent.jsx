@@ -19,7 +19,7 @@ const ShowEvent = () => {
   )
   const { isLoaded } = useLoadScript({
     libraries: ['places'],
-    googleMapsApiKey: 'AIzaSyC6DwktZ3BWJv42jfFa0n_M0p5opKEBKs4' 
+    googleMapsApiKey: 'AIzaSyDbYlIH0nJY7TuCEAYoc-mZBRdJ7BX2jeI'
   })
   const fetchData = async () => {
     try {
@@ -45,7 +45,7 @@ const ShowEvent = () => {
 
   const handleDelete = async (eventId) => {
     console.log('Deleting event with ID:', eventId)
-  
+
     try {
       if (eventId) {
         await axios.delete(`http://localhost:4000/eventid/${eventId}`)
@@ -58,7 +58,6 @@ const ShowEvent = () => {
       console.error(`Error deleting event: ${error}`)
     }
   }
-  
 
   return (
     <div>
@@ -103,7 +102,9 @@ const ShowEvent = () => {
                       />
                     </GoogleMap>
                   </a>
-                  <button onClick={() => handleDelete(event._id)}>Delete Event</button>
+                  <button onClick={() => handleDelete(event._id)}>
+                    Delete Event
+                  </button>
                 </>
               )}
             </div>
