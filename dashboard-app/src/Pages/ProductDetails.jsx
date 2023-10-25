@@ -30,9 +30,10 @@ const ProductDetails = () => {
       {
         <div key={product._id} value={product._id}>
           <img
-            src={` http://localhost:4000${product.productImage}`}
-            alt="product-img"
-            style={imageStyle}
+            src={`http://localhost:4000/uploads/${product.productImage}`}
+            height={150}
+            width={100}
+            alt=""
           />
           <h2>{product.productName}</h2>
           <h3>{product.productPrice}</h3>

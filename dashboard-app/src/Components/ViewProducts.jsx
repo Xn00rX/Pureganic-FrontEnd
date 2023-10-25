@@ -51,7 +51,7 @@ const ViewProducts = () => {
               <tr>
                 <td>
                   <img
-                    src={` http://localhost:4000${product.productImage}`}
+                    src={`http://localhost:4000/uploads/${product.productImage}`}
                     alt="product-img"
                     style={imageStyle}
                   />
