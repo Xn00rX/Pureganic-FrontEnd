@@ -1,5 +1,7 @@
 import React, { useState, useMemo } from 'react'
 import { GoogleMap, useLoadScript, MarkerF } from '@react-google-maps/api'
+
+import { useNavigate } from 'react-router-dom'
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng
@@ -14,7 +16,8 @@ import {
 import '@reach/combobox/styles.css'
 import axios from 'axios'
 
-const Event = () => {
+const Event = ({ user }) => {
+  let navigate = useNavigate()
   const [selected, setSelected] = useState(null)
   const [mapCenter, setMapCenter] = useState({ lat: 26.0667, lng: 50.5577 })
   const [eventData, setEventData] = useState({
@@ -29,7 +32,7 @@ const Event = () => {
 
   const { isLoaded } = useLoadScript({
     libraries: ['places'],
-    googleMapsApiKey: 'AIzaSyC6DwktZ3BWJv42jfFa0n_M0p5opKEBKs4'
+    googleMapsApiKey: 'AIzaSyDbYlIH0nJY7TuCEAYoc-mZBRdJ7BX2jeI'
   })
 
   const center = useMemo(() => mapCenter, [mapCenter])
@@ -110,6 +113,23 @@ const Event = () => {
     )
   }
 
+
+
+  // const Navigation = ()=>{
+  //   const timer = setTimeout(() => {
+  //     navigate('/signin')
+  //   }, 5000)
+  //   return () => clearTimeout(timer)
+  // }
+
+
+
+  // useEffect(() => {
+  //   Navigation()
+  // }, [])
+
+
+
   const handleSubmit = async (e) => {
     e.preventDefault()
 
@@ -156,78 +176,88 @@ const Event = () => {
   if (!isLoaded) return <div>Loading</div>
 
   return (
-    <div>
-      <h1>Create Your Own Event</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="Name">Event Name:</label>
-          <input
-            type="text"
-            id="Name"
-            name="Name"
-            value={eventData.Name}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="Price">Event Price:</label>
-          <input
-            type="number"
-            id="Price"
-            name="Price"
-            value={eventData.Price}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="EventImage">Event Image:</label>
-          <input
-            type="file"
-            id="EventImage"
-            name="EventImage"
-            accept="image/*"
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="EventLocation">Event Location Name:</label>
-          <input
-            type="text"
-            id="EventLocation"
-            name="EventLocation"
-            value={eventData.EventLocation}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="Date">Event Date:</label>
-          <input
-            type="date"
-            id="Date"
-            name="Date"
-            value={eventData.Date}
-            onChange={handleInputChange}
-          />
-        </div>
-        <PlacesAutocomplete />
-        <GoogleMap
-          zoom={10.36}
-          center={center}
-          mapContainerClassName="map-container"
-          options={options}
-          onClick={handleMapClick}
-        >
-          {selected && <MarkerF position={selected} />}
-        </GoogleMap>
-        {selected && (
-          <div>
-            <p>Latitude: {selected.lat}</p>
-            <p>Longitude: {selected.lng}</p>
-          </div>
-        )}
-        <button type="submit">Create Event </button>
-      </form>
-    </div>
+    <>
+      {user ? (
+        <>
+          <h1>Create Your Own Event</h1>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label htmlFor="Name">Event Name:</label>
+              <input
+                type="text"
+                id="Name"
+                name="Name"
+                value={eventData.Name}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="Price">Event Price:</label>
+              <input
+                type="number"
+                id="Price"
+                name="Price"
+                value={eventData.Price}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="EventImage">Event Image:</label>
+              <input
+                type="file"
+                id="EventImage"
+                name="EventImage"
+                accept="image/*"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="EventLocation">Event Location Name:</label>
+              <input
+                type="text"
+                id="EventLocation"
+                name="EventLocation"
+                value={eventData.EventLocation}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label htmlFor="Date">Event Date:</label>
+              <input
+                type="date"
+                id="Date"
+                name="Date"
+                value={eventData.Date}
+                onChange={handleInputChange}
+              />
+            </div>
+            <PlacesAutocomplete />
+            <GoogleMap
+              zoom={10.36}
+              center={center}
+              mapContainerClassName="map-container"
+              options={options}
+              onClick={handleMapClick}
+            >
+              {selected && <MarkerF position={selected} />}
+            </GoogleMap>
+            {selected && (
+              <div>
+                <p>Latitude: {selected.lat}</p>
+                <p>Longitude: {selected.lng}</p>
+              </div>
+            )}
+            <button type="submit">Create Event </button>
+          </form>
+        </>
+      ) : (
+        <>
+          <h1> You need to login </h1>
+          {navigate('/signin')}
+          {/* {Navigation()} */}
+        </>
+      )}
+    </>
   )
 }
 
