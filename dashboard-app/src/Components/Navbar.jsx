@@ -33,8 +33,8 @@ const Navbar = ({ user, userType, handleLogOut, totalQuantity }) => {
         <nav className="Navbar">
           <div>
             <NavLink to="/"> Home </NavLink>
-            {/* <NavLink to="/api/products">Products</NavLink> */}
-            {/* <NavLink to="/showevents">Explore Events</NavLink> */}
+            <NavLink to="/api/products">Products</NavLink>
+            <NavLink to="/showevents">Explore Events</NavLink>
             <NavLink to="/addproduct"> Add Product </NavLink>
             <NavLink to="/addcategory"> Add Category </NavLink>
             <NavLink to="/event">Event</NavLink>
