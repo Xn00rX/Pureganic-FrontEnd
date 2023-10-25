@@ -1,4 +1,7 @@
+
 import React, { useState, useEffect } from "react"
+
+import { Link } from "react-router-dom"
 import axios from "axios"
 
 const Product = ({ user, handleClick }) => {
@@ -59,7 +62,10 @@ const Product = ({ user, handleClick }) => {
       {filteredProducts.map((product) => (
         <div key={product._id}>
           <h2>{product._id}</h2>
-          <h3>{product.productName}</h3>
+          <Link to={`/productdetails/${product._id}`}>
+            <h3>{product.productName}</h3>
+          </Link>
+
           <p>{product.productDesc}</p>
           <p>Price: ${product.productPrice}</p>
           <button onClick={(e) => handleClick(e, product._id)}>

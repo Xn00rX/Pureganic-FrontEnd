@@ -1,15 +1,15 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { SignInUser } from '../services/Auth'
+import React, { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { SignInUser } from "../services/Auth"
 
-const Login = ({ setUser }) => {
+const Login = ({ setUser, setUserType }) => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   })
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState('')
+  const [error, setError] = useState("")
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -22,21 +22,22 @@ const Login = ({ setUser }) => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    setError('')
+    setError("")
 
     try {
       const payload = await SignInUser(formData)
-      console.log('User Logged In:', payload)
+      console.log("User Logged In:", payload)
       console.log(payload.userimage)
       setFormData({
-        email: '',
-        password: '',
+        email: "",
+        password: "",
       })
       setUser(payload)
-      navigate('/')
+      setUserType(payload.userType)
+      navigate("/")
     } catch (error) {
-      console.error('Error:', error)
-      setError('Login failed')
+      console.error("Error:", error)
+      setError("Login failed")
     } finally {
       setLoading(false)
     }
@@ -61,7 +62,7 @@ const Login = ({ setUser }) => {
           onChange={handleInputChange}
         />
         <button type="submit" disabled={loading}>
-          {loading ? 'Logging in...' : 'Login'}
+          {loading ? "Logging in..." : "Login"}
         </button>
       </form>
       {error && <p>{error}</p>}
