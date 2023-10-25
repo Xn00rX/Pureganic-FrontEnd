@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import axios from 'axios'
+import { useState, useEffect } from "react"
+import { Link, useParams } from "react-router-dom"
+import axios from "axios"
 
 const ViewCategories = () => {
   const [categories, setCategories] = useState([])
+  const [deletedCategory, setDeletedCAtegory] = useState(0)
 
   const getCategories = async () => {
     const response = await axios.get(`http://localhost:4000/apicategory`)
@@ -13,21 +14,22 @@ const ViewCategories = () => {
 
   useEffect(() => {
     getCategories()
-  }, [])
+  }, [deletedCategory])
 
   const { category_id } = useParams()
   const deleteCategory = (category_id) => {
     const response = axios.delete(
       `http://localhost:4000/apicategory/` + category_id
     )
+    setDeletedCAtegory(1)
   }
 
   const imageStyle = {
-    width: '80px',
-    height: '80px'
+    width: "80px",
+    height: "80px",
   }
   const tableStyle = {
-    width: '100%'
+    width: "100%",
   }
 
   return (
@@ -41,7 +43,7 @@ const ViewCategories = () => {
                 <th>Name</th>
                 <th>Description</th>
                 <th>Products</th>
-                <th>Edit</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -55,7 +57,7 @@ const ViewCategories = () => {
                 </td>
                 <td>{category.catgName}</td>
                 <td>{category.catgDesc}</td>
-                {console.log('check heereee ', category.product)}
+                {console.log("check heereee ", category.product)}
 
                 <td>
                   {category.product.map((pr) => (
@@ -76,7 +78,7 @@ const ViewCategories = () => {
                     </button>
                   </Link>
                   &nbsp;&nbsp;&nbsp;
-                  <button className="btn btn-warning">Edit</button>
+                  {/* <button className="btn btn-warning">Edit</button> */}
                 </td>
               </tr>
             </tbody>

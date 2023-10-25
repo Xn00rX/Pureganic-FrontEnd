@@ -14,7 +14,7 @@ const Navbar = ({ user, handleLogOut, totalQuantity }) => {
 
         <NavLink to="/api/products">Products</NavLink>
         <NavLink to="/register"> Register </NavLink>
-        <NavLink to="/addproducts"> Add Product </NavLink>
+        <NavLink to="/addproduct"> Add Product </NavLink>
         <NavLink to="/addcategory"> Add Category </NavLink>
         <NavLink to="/viewproducts">View Products</NavLink>
         <NavLink to="/viewcategories">View Categories</NavLink>

@@ -22,8 +22,11 @@ import ProductDetails from "./Pages/ProductDetails"
 import ViewCategories from "./Components/ViewCategories"
 import UpdateProduct from "./Pages/UpdateProduct"
 import AddCatgeory from "./Components/AddCategory"
+import { useNavigate } from "react-router-dom"
+import Swal from "sweetalert2"
 
 function App() {
+  const navigate = useNavigate()
   const [user, setUser] = useState(null)
   const [updatedUser, setUpdatedUser] = useState(null)
   const [cart, setcart] = useState([])
@@ -80,7 +83,6 @@ function App() {
   }, [])
 
   const handleClick = async (event, pro_id) => {
-    console.log("pro_id", pro_id)
     if (user) {
       if (
         event.target.innerText === "+" ||
@@ -104,17 +106,42 @@ function App() {
           }
         )
         setChooseProduct(response)
+        if (totalQuantity == 1) {
+          setTotalQuantity(0)
+        }
       }
-    } else {
-      console.log("please login")
+    } else if (!user) {
+      // console.log("please login")
+      navigate("/signin")
     }
   }
 
   const pay = async () => {
     const response = await axios.post(`http://localhost:4000/orders/${user.id}`)
-    //to refresh the page after payment
+    // //to refresh the page after payment
+    // // swal("Hello world!")
     setcart([])
     setTotalQuantity(0)
+    // swal({
+    //   title: "Paid successfully!",
+    //   icon: "success",
+    //   button: "ok!",
+    // })
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Your work has been saved",
+      showConfirmButton: false,
+      background: "blue",
+      timer: 1500,
+    })
+    // Swal.fire({
+    //   title: "Custom width, padding, color, background.",
+    //   width: 600,
+    //   padding: "3em",
+    //   color: "#716add",
+    //   background: "red",
+    // })
   }
 
   useEffect(() => {
