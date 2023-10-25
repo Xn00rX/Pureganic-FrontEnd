@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { SignInUser } from "../services/Auth"
 
-const Login = ({ setUser }) => {
+const Login = ({ setUser, setUserType }) => {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({
     email: "",
@@ -33,6 +33,7 @@ const Login = ({ setUser }) => {
         password: "",
       })
       setUser(payload)
+      setUserType(payload.userType)
       navigate("/")
     } catch (error) {
       console.error("Error:", error)

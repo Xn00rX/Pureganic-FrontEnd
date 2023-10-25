@@ -28,7 +28,8 @@ import Swal from "sweetalert2"
 function App() {
   const navigate = useNavigate()
   const [user, setUser] = useState(null)
-  const [updatedUser, setUpdatedUser] = useState(null)
+  const [userType, setUserType] = useState("")
+
   const [cart, setcart] = useState([])
   const [totalQuantity, setTotalQuantity] = useState(0)
   const [chooseProduct, setChooseProduct] = useState()
@@ -52,6 +53,7 @@ function App() {
 
   const handleLogOut = () => {
     setUser(null)
+    setUserType("")
     localStorage.clear()
   }
 
@@ -59,7 +61,11 @@ function App() {
     const user = await CheckSession()
     console.log(user)
     console.log(user.id)
+    console.log(user.userType)
+
+    let userType = user.userType
     await setUser(user)
+    setUserType(userType)
     getCartProducts(user)
   }
 
@@ -118,30 +124,19 @@ function App() {
 
   const pay = async () => {
     const response = await axios.post(`http://localhost:4000/orders/${user.id}`)
-    // //to refresh the page after payment
-    // // swal("Hello world!")
+
     setcart([])
     setTotalQuantity(0)
-    // swal({
-    //   title: "Paid successfully!",
-    //   icon: "success",
-    //   button: "ok!",
-    // })
+
     Swal.fire({
       position: "center",
       icon: "success",
       title: "Your work has been saved",
       showConfirmButton: false,
-      background: "blue",
+      background: "black",
+      color: "white",
       timer: 1500,
     })
-    // Swal.fire({
-    //   title: "Custom width, padding, color, background.",
-    //   width: 600,
-    //   padding: "3em",
-    //   color: "#716add",
-    //   background: "red",
-    // })
   }
 
   useEffect(() => {
@@ -158,6 +153,7 @@ function App() {
       {user ? (
         <Navbar
           user={user}
+          userType={userType}
           handleLogOut={handleLogOut}
           totalQuantity={totalQuantity}
         />
@@ -172,7 +168,7 @@ function App() {
             path="/api/products"
             element={<ProductList user={user} handleClick={handleClick} />}
           />
-          <Route path="/addproduct" element={<AddProduct />} />
+          <Route path="/addproduct" element={<AddProduct user={user} />} />
           <Route
             path="/cart"
             element={
@@ -185,12 +181,15 @@ function App() {
             }
           />
           <Route path="/orders" element={<Order user={user} />} />
-          <Route path="/viewproducts" element={<ViewProducts />} />
-          <Route path="/viewcategories" element={<ViewCategories />} />
+          <Route path="/viewproducts" element={<ViewProducts user={user} />} />
+          <Route
+            path="/viewcategories"
+            element={<ViewCategories user={user} />}
+          />
           <Route path="/productdelete/:product_id" element={<ViewProducts />} />
           <Route
             path="/productdetails/:product_id"
-            element={<ProductDetails />}
+            element={<ProductDetails handleClick={handleClick} />}
           />
           <Route
             path="/categorydelete/:category_id"
@@ -200,11 +199,14 @@ function App() {
             path="/productupdate/:product_id"
             element={<UpdateProduct />}
           />
-          <Route path="/addcategory" element={<AddCatgeory />} />
-          <Route path="/signin" element={<Login setUser={setUser} />} />
+          <Route path="/addcategory" element={<AddCatgeory user={user} />} />
+          <Route
+            path="/signin"
+            element={<Login setUser={setUser} setUserType={setUserType} />}
+          />
           <Route path="/register" element={<Register />} />
           <Route path="/userprofile" element={<Userprofile user={user} />} />
-          <Route path="/event" element={<Event />} />
+          <Route path="/event" element={<Event user={user} />} />
           <Route path="/showevents" element={<ShowEvent />} />
 
           <Route

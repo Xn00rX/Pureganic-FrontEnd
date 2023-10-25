@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { Link, useParams } from "react-router-dom"
 import axios from "axios"
 
-const ViewCategories = () => {
+const ViewCategories = ({user}) => {
   const [categories, setCategories] = useState([])
   const [deletedCategory, setDeletedCAtegory] = useState(0)
 
@@ -33,6 +33,9 @@ const ViewCategories = () => {
   }
 
   return (
+   <>
+   {user? (<>
+   
     <div>
       {categories.map((category) => (
         <div key={category._id} value={category._id}>
@@ -86,6 +89,12 @@ const ViewCategories = () => {
         </div>
       ))}
     </div>
+   
+   </>):(<>
+   
+   <h1>Login</h1>
+   </>)}
+   </>
   )
 }
 
