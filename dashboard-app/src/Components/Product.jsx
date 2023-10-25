@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react"
 
 import { Link } from "react-router-dom"
@@ -8,8 +7,7 @@ const Product = ({ user, handleClick }) => {
   const [searchField, setSearchField] = useState("")
   const [products, setProducts] = useState([])
   const [filteredProducts, setFilteredProducts] = useState([])
-  const [sortOrder, setSortOrder] = useState("") 
-
+  const [sortOrder, setSortOrder] = useState("")
   const getProduct = async () => {
     const response = await axios.get("/api/products")
     setProducts(response.data)
@@ -25,10 +23,9 @@ const Product = ({ user, handleClick }) => {
     )
 
     if (sortOrder === "high") {
-      filtered.sort((a, b) => a.productPrice - b.productPrice) 
-      
+      filtered.sort((a, b) => a.productPrice - b.productPrice)
     } else if (sortOrder === "low") {
-      filtered.sort((a, b) => b.productPrice - a.productPrice) 
+      filtered.sort((a, b) => b.productPrice - a.productPrice)
     }
 
     setFilteredProducts(filtered)
@@ -36,7 +33,7 @@ const Product = ({ user, handleClick }) => {
 
   const handleSortChange = (e) => {
     setSortOrder(e.target.value)
-    handleChange({ target: { value: searchField } }) 
+    handleChange({ target: { value: searchField } })
   }
 
   useEffect(() => {

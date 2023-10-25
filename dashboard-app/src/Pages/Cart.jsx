@@ -2,7 +2,7 @@ import React from "react"
 
 const Cart = ({ user, cart, handleClick, pay }) => {
   let total = 0
-  // console.log("sss", cart)
+  console.log("sss", cart)
   cart.map((product) => {
     total += product.product.productPrice * product.quantity
   })

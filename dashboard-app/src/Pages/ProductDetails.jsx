@@ -37,7 +37,9 @@ const ProductDetails = ({ handleClick }) => {
           <h2>{product.productName}</h2>
           <h3>{product.productPrice}</h3>
           <p>{product.productDesc}</p>
-          <button onClick={handleClick}>Add to Cart</button>
+          <button onClick={(e) => handleClick(e, product._id)}>
+            Add to Cart
+          </button>
         </div>
       }
     </div>

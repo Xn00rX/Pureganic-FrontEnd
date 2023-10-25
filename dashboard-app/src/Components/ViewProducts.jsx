@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { Link, useParams } from "react-router-dom"
 import axios from "axios"
 
-const ViewProducts = ({user}) => {
+const ViewProducts = ({ user }) => {
   const [products, setProducts] = useState([])
   const [deleteItem, setDeleteItem] = useState(0)
 
@@ -36,69 +36,69 @@ const ViewProducts = ({user}) => {
 
   return (
     <>
- {user ? (<>
- 
-  <div>
-      {products.map((product) => (
-        <div key={product._id} value={product._id}>
-          <table className="table table-dark table-sm" style={tableStyle}>
-            <thead>
-              <tr>
-                <th>Image</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Description</th>
-                <th>Category</th>
-                <th>Edit</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <img
-                    src={` http://localhost:4000${product.productImage}`}
-                    alt="product-img"
-                    style={imageStyle}
-                  />
-                </td>
+      {user ? (
+        <>
+          <div>
+            <table className="table table-dark table-sm" style={tableStyle}>
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Name</th>
+                  <th>Price</th>
+                  <th>Description</th>
+                  <th>Category</th>
+                  <th>Edit</th>
+                </tr>
+              </thead>
+              {products.map((product) => (
+                <div key={product._id} value={product._id}>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <img
+                          src={` http://localhost:4000${product.productImage}`}
+                          alt="product-img"
+                          style={imageStyle}
+                        />
+                      </td>
 
-                <td>
-                  {" "}
-                  <Link to={`/productdetails/${product._id}`}>
-                    {product.productName}
-                  </Link>
-                </td>
-                <td>{product.productPrice}</td>
-                <td>{product.productDesc}</td>
-                {console.log("check heereee ", product.category)}
-                <td>{product.category.catgName}</td>
-                <td>
-                  <Link to={`/productdelete/${product._id}`}>
-                    <button
-                      onClick={(event) => {
-                        event.preventDefault()
-                        deleteProduct(product._id)
-                      }}
-                      className="btn btn-warning"
-                    >
-                      Delete
-                    </button>
-                  </Link>
-                  &nbsp;&nbsp;&nbsp;
-                  <Link to={`/productupdate/${product._id}`}>
-                    <button className="btn btn-warning">Edit</button>
-                  </Link>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      ))}
-    </div>
- 
- </>):(<h1>Login</h1>)}
-  
-  </>
+                      <td>
+                        <Link to={`/productdetails/${product._id}`}>
+                          {product.productName}
+                        </Link>
+                      </td>
+                      <td>{product.productPrice}</td>
+                      <td>{product.productDesc}</td>
+                      {console.log("check heereee ", product.category)}
+                      <td>{product.category.catgName}</td>
+                      <td>
+                        <Link to={`/productdelete/${product._id}`}>
+                          <button
+                            onClick={(event) => {
+                              event.preventDefault()
+                              deleteProduct(product._id)
+                            }}
+                            className="btn btn-warning"
+                          >
+                            Delete
+                          </button>
+                        </Link>
+                        &nbsp;&nbsp;&nbsp;
+                        <Link to={`/productupdate/${product._id}`}>
+                          <button className="btn btn-warning">Edit</button>
+                        </Link>
+                      </td>
+                    </tr>
+                  </tbody>
+                </div>
+              ))}{" "}
+            </table>
+          </div>
+        </>
+      ) : (
+        <h1>Login</h1>
+      )}
+    </>
   )
 }
 

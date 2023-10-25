@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { SignInUser } from "../services/Auth"
+import Swal from "sweetalert2"
 
 const Login = ({ setUser, setUserType }) => {
   const navigate = useNavigate()
@@ -34,6 +35,26 @@ const Login = ({ setUser, setUserType }) => {
       })
       setUser(payload)
       setUserType(payload.userType)
+
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer)
+          toast.addEventListener("mouseleave", Swal.resumeTimer)
+        },
+      })
+
+      Toast.fire({
+        icon: "success",
+        title: "Signed in successfully",
+        background: "black",
+        color: "white",
+      })
+
       navigate("/")
     } catch (error) {
       console.error("Error:", error)
