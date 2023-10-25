@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Navbar from './Components/Navbar'
@@ -22,39 +21,13 @@ import ProductDetails from './Pages/ProductDetails'
 import ViewCategories from './Components/ViewCategories'
 import UpdateProduct from './Pages/UpdateProduct'
 import AddCatgeory from './Components/AddCategory'
-=======
-import { useState } from "react"
-import { Route, Routes } from "react-router-dom"
-import "./App.css"
-import Navbar from "./Components/Navbar"
-import Home from "./Pages/Home"
-import ProductList from "./Pages/Productlist"
-import Cart from "./Pages/Cart"
-import AddProduct from "./Components/AddProduct"
-import Login from "./Pages/Login"
-import Register from "./Pages/Register"
-import PasswordChange from "./Pages/PasswordChange"
-import Userprofile from "./Pages/Userprofile"
-import { CheckSession } from "./services/Auth"
-import { useEffect } from "react"
-import axios from "axios"
-import Order from "./Pages/Order"
-import Footer from "./Components/footer"
-import Event from "./Pages/Event"
-import ShowEvent from "./Pages/ShowEvent"
-import ViewProducts from "./Components/ViewProducts"
-import ProductDetails from "./Pages/ProductDetails"
-import ViewCategories from "./Components/ViewCategories"
-import UpdateProduct from "./Pages/UpdateProduct"
-import AddCatgeory from "./Components/AddCategory"
-import { useNavigate } from "react-router-dom"
-import Swal from "sweetalert2"
->>>>>>> f9d9b0ed6adb18e84afba38692638c0cde2f86e5
+import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 function App() {
   const navigate = useNavigate()
   const [user, setUser] = useState(null)
-  const [userType, setUserType] = useState("")
+  const [userType, setUserType] = useState('')
 
   const [cart, setcart] = useState([])
   const [totalQuantity, setTotalQuantity] = useState(0)
@@ -79,7 +52,7 @@ function App() {
 
   const handleLogOut = () => {
     setUser(null)
-    setUserType("")
+    setUserType('')
     localStorage.clear()
   }
 
@@ -115,10 +88,6 @@ function App() {
   }, [])
 
   const handleClick = async (event, pro_id) => {
-<<<<<<< HEAD
-    console.log('pro_id', pro_id)
-=======
->>>>>>> f9d9b0ed6adb18e84afba38692638c0cde2f86e5
     if (user) {
       if (
         event.target.innerText === '+' ||
@@ -146,14 +115,9 @@ function App() {
           setTotalQuantity(0)
         }
       }
-<<<<<<< HEAD
-    } else {
-      console.log('please login')
-=======
     } else if (!user) {
       // console.log("please login")
-      navigate("/signin")
->>>>>>> f9d9b0ed6adb18e84afba38692638c0cde2f86e5
+      navigate('/signin')
     }
   }
 
@@ -164,13 +128,13 @@ function App() {
     setTotalQuantity(0)
 
     Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Your work has been saved",
+      position: 'center',
+      icon: 'success',
+      title: 'Your work has been saved',
       showConfirmButton: false,
-      background: "black",
-      color: "white",
-      timer: 1500,
+      background: 'black',
+      color: 'white',
+      timer: 1500
     })
   }
 
