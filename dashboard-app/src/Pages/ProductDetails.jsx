@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import axios from 'axios'
+import { useState, useEffect } from "react"
+import { Link, useParams } from "react-router-dom"
+import axios from "axios"
 
 const ProductDetails = ({ handleClick }) => {
   const [product, setProduct] = useState([])
 
   const imageStyle = {
-    width: '400px',
-    height: '400px'
+    width: "400px",
+    height: "400px",
   }
   const { product_id } = useParams()
 
