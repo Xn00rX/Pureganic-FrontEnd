@@ -26,36 +26,39 @@ const Order = ({ user }) => {
   }, [])
 
   return (
-    <>
+    <div className="CartPage">
+      <div className="LoginParentHide"></div>
+
       {orders
         ? orders.map((order) => (
-            <Card onClick={() => setShow(!show)}>
-              {/* Click on this card */}
-              <h5>OrderNo.</h5>
-              <h6>{order._id}</h6>
-              <br />
-              {order.orderItems.map(
-                (or) =>
-                  show && (
-                    <span role="img" aria-label="sparkles">
-                      <div key={or._id}>
-                        <img
-                          src={` http://localhost:4000${or.product.productImage}`}
-                          alt="product-img"
-                          style={imageStyle}
-                        />
-                        <h6>Product Name: {or.product.productName}</h6>
-                        <h6>Quantity: {or.quantity}</h6>
-
-                        <h6>Price: {or.product.productPrice}</h6>
-                      </div>
-                    </span>
-                  )
-              )}
-            </Card>
+            <div className="ordercard">
+              <Card onClick={() => setShow(!show)}>
+                {/* Click on this card */}
+                <h5>OrderNo.</h5>
+                <h6>{order._id}</h6>
+                <br />
+                {order.orderItems.map(
+                  (or) =>
+                    show && (
+                      <span role="img" aria-label="sparkles">
+                        <div key={or._id}>
+                          <h6>Quantity: {or.quantity}</h6>
+                          <h6>Product Name: {or.product.productName}</h6>
+                          <img
+                            src={` http://localhost:4000${or.product.productImage}`}
+                            alt="product-img"
+                            style={imageStyle}
+                          />
+                          <h6>Price: {or.product.productPrice}</h6>
+                        </div>
+                      </span>
+                    )
+                )}
+              </Card>
+            </div>
           ))
         : console.log("You Do no Have Any Order")}
-    </>
+    </div>
   )
 
   // return (

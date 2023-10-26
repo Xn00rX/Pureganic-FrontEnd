@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
-import axios from "axios"
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const UpdateProduct = () => {
   const navigate = useNavigate()
   const { product_id } = useParams()
   const [values, setValues] = useState({
-    productName: "",
-    productDesc: "",
-    productPrice: 0,
+    productName: '',
+    productDesc: '',
+    productPrice: 0
     // productImage: null
     // category: null
   })
@@ -22,7 +22,7 @@ const UpdateProduct = () => {
       ...values,
       productName: response.data.productName,
       productDesc: response.data.productDesc,
-      productPrice: response.data.productPrice,
+      productPrice: response.data.productPrice
       // productImage: response.data.productImage
     })
     console.log(response.data)
@@ -35,7 +35,7 @@ const UpdateProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     const updateProductDetails = async () => {
-      console.log("heereeee ", product_id)
+      console.log('heereeee ', product_id)
       const response = await axios.put(
         `http://localhost:4000/apiproduct/` + product_id,
         values
@@ -44,30 +44,33 @@ const UpdateProduct = () => {
         ...values,
         productName: response.data.productName,
         productDesc: response.data.productDesc,
-        productPrice: response.data.productPrice,
+        productPrice: response.data.productPrice
         // productImage: response.data.productImage
       })
       console.log({
         ...values,
         productName: e.target.value,
         productDesc: e.target.value,
-        productPrice: e.target.value,
+        productPrice: e.target.value
         // productImage: e.target.value
       })
 
       // console.log("yessssss")
-      navigate("/viewproducts")
+      navigate('/viewproducts')
     }
 
     updateProductDetails()
   }
   return (
-    <div>
-      <h1>Update</h1>
+    <div className="LoginPage">
+      <div className="LoginParentHide"></div>
+
+      <h1 className="updateH">Update Product</h1>
       <form>
         <label>Name</label>
         <input
           value={values.productName}
+          className="form-control"
           onChange={(e) =>
             setValues({ ...values, productName: e.target.value })
           }
@@ -75,6 +78,7 @@ const UpdateProduct = () => {
         <label>Description</label>
         <textarea
           value={values.productDesc}
+          className="form-control"
           onChange={(e) =>
             setValues({ ...values, productDesc: e.target.value })
           }
@@ -82,6 +86,7 @@ const UpdateProduct = () => {
         <label>Price</label>
         <input
           value={values.productPrice}
+          className="form-control"
           onChange={(e) =>
             setValues({ ...values, productPrice: e.target.value })
           }
@@ -97,7 +102,12 @@ const UpdateProduct = () => {
           }
         /> */}
       </form>
-      <button onClick={handleSubmit}>update</button>
+
+      <br />
+
+      <button className="btn btn-outline-success myBtns" onClick={handleSubmit}>
+        update
+      </button>
     </div>
   )
 }

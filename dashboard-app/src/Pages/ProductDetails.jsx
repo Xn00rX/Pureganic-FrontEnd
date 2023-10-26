@@ -26,22 +26,35 @@ const ProductDetails = ({ handleClick }) => {
   }, [])
 
   return (
-    <div>
-      {
-        <div key={product._id} value={product._id}>
+    <div className="ProductDetails">
+      <div className="ProductListHeading">
+        <p>"Pure goodness from the land"</p>
+      </div>
+
+      <div
+        className="ProductDetailsParent"
+        key={product._id}
+        value={product._id}
+      >
+        <div className="productImageDisplay">
           <img
             src={` http://localhost:4000${product.productImage}`}
             alt="product-img"
             style={imageStyle}
           />
+        </div>
+        <div className="ProductInfoDisplay">
           <h2>{product.productName}</h2>
-          <h3>{product.productPrice}</h3>
+          <h5>BHD {product.productPrice}</h5>
           <p>{product.productDesc}</p>
-          <button onClick={(e) => handleClick(e, product._id)}>
+          <button
+            className="btn btn-outline-success myBtns"
+            onClick={(e) => handleClick(e, product._id)}
+          >
             Add to Cart
           </button>
         </div>
-      }
+      </div>
     </div>
   )
 }

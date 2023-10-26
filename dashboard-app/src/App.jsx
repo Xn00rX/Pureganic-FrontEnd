@@ -23,6 +23,7 @@ import UpdateProduct from "./Pages/UpdateProduct"
 import AddCatgeory from "./Components/AddCategory"
 import { useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
+import Category from "./Components/Category"
 
 function App() {
   const navigate = useNavigate()
@@ -166,6 +167,11 @@ function App() {
           <Route
             path="/products"
             element={<ProductList user={user} handleClick={handleClick} />}
+          />
+          <Route path="/categories" element={<Category user={user} />} />
+          <Route
+            path="/categoriesp"
+            element={<CategoryProducts user={user} />}
           />
           <Route path="/addproduct" element={<AddProduct user={user} />} />
           <Route
