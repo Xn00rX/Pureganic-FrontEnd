@@ -1,22 +1,22 @@
-import React, { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import axios from "axios"
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 const AddCategory = ({ user }) => {
   const navigate = useNavigate()
   const [categoryData, setCategoryData] = useState({
-    catgName: "",
-    catgDesc: "",
-    catgImage: null,
+    catgName: '',
+    catgDesc: '',
+    catgImage: null
   })
 
   const handleInputChange = (e) => {
     const { name, value, type, files } = e.target
-    const newValue = type === "file" ? files[0] : value
+    const newValue = type === 'file' ? files[0] : value
 
     setCategoryData({
       ...categoryData,
-      [name]: newValue,
+      [name]: newValue
     })
   }
 
@@ -26,28 +26,28 @@ const AddCategory = ({ user }) => {
     const data = {
       catgDesc: categoryData.catgDesc,
       catgName: categoryData.catgName,
-      catgImage: categoryData.catgImage,
+      catgImage: categoryData.catgImage
     }
 
     try {
       const response = await axios.post(
-        "http://localhost:4000/apicategory",
+        'http://localhost:4000/apicategory',
         data,
         {
-          headers: { "Content-Type": "multipart/form-data" },
+          headers: { 'Content-Type': 'multipart/form-data' }
         }
       )
 
-      console.log("Category added:", response.data)
+      console.log('Category added:', response.data)
       setCategoryData({
-        catgName: "",
-        catgDesc: "",
-        catgImage: null,
+        catgName: '',
+        catgDesc: '',
+        catgImage: null
       })
 
-      navigate("/viewcategories")
+      navigate('/viewcategories')
     } catch (error) {
-      console.error("Error:", error)
+      console.error('Error:', error)
     }
   }
 
@@ -55,8 +55,9 @@ const AddCategory = ({ user }) => {
     <>
       {user ? (
         <>
-          <div>
-            <h1> Add Category</h1>
+          <div className="LoginPage">
+            <div className="LoginParentHide"></div>
+            <h1 className="addph"> Add Category</h1>
             <div className="shadow p-3 mb-5 bg-body-tertiary rounded myForms">
               <form onSubmit={handleSubmit}>
                 <div>

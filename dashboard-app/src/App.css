@@ -225,7 +225,12 @@ padding: 0;
   background-size: cover;
   background-position: center center;
   height: 100vh;
-   
+
+}
+
+.addph {
+  font-family: Urbanist;
+  color: white;
 }
 
 .RegPage {
@@ -256,6 +261,22 @@ padding: 0;
   margin-right: auto !important;
   margin-left: auto !important;
   margin-bottom: 5% !important;
+  
+}
+
+.UserParent {
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  background-color: rgba(255, 255, 255, 0.1); 
+  width: max-content;
+  border-radius: 11px;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  margin-bottom: 5% !important;
+  padding: 6%;
+  justify-content: center;
+  text-align: left;
   
 }
 
@@ -401,7 +422,7 @@ padding: 0;
   margin-left: auto !important;
   margin-bottom: 5% !important;
   justify-content:center;
-  text-align: left;
+  text-align: center;
   padding: 5%;
  
 }
@@ -433,4 +454,48 @@ padding: 0;
 .carttotal h1 {
   font-size: 30px;
   font-weight: 600;
+}
+
+.ordercard {
+  font-family: Urbanist;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19) !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2%;
+  background-color: rgba(255, 255, 255, 0.1) !important ; 
+  width: 60%;
+}
+
+.CartPage {
+  background-color: #052500;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: -1;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  height: 130vh;
+   
+}
+
+td {
+  width: 150vh;
+
+}
+
+th {
+  width: 150vh;
+}
+
+.updateH {
+  font-family: Urbanist;
+  color: white;
+}
+
+.userpage {
+  color: white;
+  font-family: Urbanist;
+
 }
