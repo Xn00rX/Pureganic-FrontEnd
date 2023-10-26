@@ -122,8 +122,8 @@ padding: 0;
 
 
 .map-container{
-  width: 40%;
-  height: 80vh;
+  width: 30%;
+  height: 50vh;
 }
 
 /* Homepage starts here */
@@ -199,6 +199,24 @@ padding: 0;
   margin-right: auto !important;
   margin-left: auto !important;
   margin-bottom: 5% !important;
+}
+
+.Filter{
+  display: flex;
+  justify-content: space-around;
+}
+.categoryFilter{
+  display: flex ;
+  align-items: center;
+}
+
+.sortBy{
+  display: flex;
+  align-items: center;
+}
+
+.flex{
+  display: flex;
 }
 
 .ProductListHeading {
@@ -344,6 +362,7 @@ padding: 0;
 }
 .HomeParent {
   width: 45%;
+  margin-top: 10%;
   margin-right: auto;
   margin-left: 5%;
   margin-bottom: 17%;
@@ -373,7 +392,7 @@ padding: 0;
   background-attachment: fixed;
   background-size: cover;
   background-position: center center;
-  height: 100vh;
+  height: 120vh;
    
 }
 

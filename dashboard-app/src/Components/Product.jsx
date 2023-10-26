@@ -22,23 +22,6 @@ const Product = ({ user, handleClick }) => {
     setFilteredProducts(response.data)
   }
 
-  const handleChange = (e) => {
-    const searchText = e.target.value
-    setSearchField(searchText)
-
-    const filtered = products.filter((product) =>
-      product.productName.toLowerCase().includes(searchText.toLowerCase())
-    )
-
-    if (sortOrder === "high") {
-      filtered.sort((a, b) => a.productPrice - b.productPrice)
-    } else if (sortOrder === "low") {
-      filtered.sort((a, b) => b.productPrice - a.productPrice)
-    }
-
-    setFilteredProducts(filtered)
-  }
-
   const getCategory = async () => {
     const categoryResponse = await axios.get("/apicategory")
     setCategories(categoryResponse.data)
@@ -63,11 +46,6 @@ const Product = ({ user, handleClick }) => {
     setSelectedCategories(updatedSelectedCategories)
     filterProducts(updatedSelectedCategories, sortOrder, searchField)
   }
-
-  // const handleSortChange = (e) => {
-  //   setSortOrder(e.target.value)
-  //   handleChange({ target: { value: searchField } })
-  // }
 
   const handleSortChange = (e) => {
     const newSortOrder = e.target.value
@@ -115,17 +93,40 @@ const Product = ({ user, handleClick }) => {
         type="search"
         placeholder="Search Products"
         value={searchField}
-        onChange={handleChange}
+        onChange={handleSearchChange}
         className="btn btn-outline-light searchinput"
       />
-
-      <label>Sort By: </label>
-      <select onChange={handleSortChange} value={sortOrder}>
-        <option value="">-- Select --</option>
-        <option value="high">High Price</option>
-        <option value="low">Low Price</option>
-      </select>
-
+      <div className="Filter">
+        <div className="sortBy">
+          <label className="addph">Sort By </label>
+          <select
+            onChange={handleSortChange}
+            value={sortOrder}
+            className="btn btn-outline-success myBtns"
+          >
+            <option value="">-- Select --</option>
+            <option value="high">High Price</option>
+            <option value="low">Low Price</option>
+          </select>
+          {/* <br />
+      <br /> */}
+        </div>
+        <div className="categoryFilter">
+          <label className="addph">Filter By Category: </label>
+          {categories.map((category) => (
+            <label key={category._id}>
+              <input
+                type="checkbox"
+                value={category.catgName}
+                checked={selectedCategories.includes(category.catgName)}
+                onChange={() => handleCategoryChange(category.catgName)}
+              />
+              <label className="addph">{category.catgName}</label>
+            </label>
+          ))}
+        </div>
+      </div>
+      <br />
       <div className="ProductContainerParent">
         {filteredProducts.map((product) => (
           <div key={product._id} className="productContainer">

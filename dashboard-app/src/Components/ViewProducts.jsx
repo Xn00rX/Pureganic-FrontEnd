@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import axios from 'axios'
+import { useState, useEffect } from "react"
+import { Link, useParams } from "react-router-dom"
+import axios from "axios"
 
 const ViewProducts = ({ user }) => {
   const [products, setProducts] = useState([])
@@ -27,8 +27,8 @@ const ViewProducts = ({ user }) => {
     const response = axios.get(`http://localhost:4000/apiproduct/` + product_id)
   }
   const imageStyle = {
-    width: '80px',
-    height: '80px'
+    width: "80px",
+    height: "80px",
   }
 
   return (
@@ -70,7 +70,7 @@ const ViewProducts = ({ user }) => {
                       </td>
                       <td>{product.productPrice}</td>
                       <td>{product.productDesc}</td>
-                      {console.log('check heereee ', product.category)}
+                      {console.log("check heereee ", product.category)}
                       <td>{product.category.catgName}</td>
                       <td>
                         <Link to={`/productdelete/${product._id}`}>

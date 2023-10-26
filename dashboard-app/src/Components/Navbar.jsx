@@ -16,23 +16,27 @@ const Navbar = ({ user, userType, handleLogOut, totalQuantity }) => {
     if (userType === "buyer") {
       return (
         <nav className="Navbar">
-          <div>
-            <NavLink to="/">
-              <img src={logo} style={imageStyle} />
-            </NavLink>
-            <NavLink to="/products">Products</NavLink>
-            <NavLink to="/showevents">Explore Events</NavLink>
-            <NavLink to="/orders">Orders</NavLink>
-            <NavLink to="/cart" className="cart">
-              <span className="count">{totalQuantity}</span>
-              <i className="material-icons">
-                <AiOutlineShoppingCart />
-              </i>
-            </NavLink>
-            <NavLink to="/userprofile">User Profile</NavLink>
-            <NavLink onClick={handleLogOut} to="/">
-              Sign Out
-            </NavLink>
+          <div className="flex">
+            <div>
+              <NavLink to="/">
+                <img src={logo} style={imageStyle} />
+              </NavLink>
+              <NavLink to="/products">Products</NavLink>
+              <NavLink to="/showevents">Explore Events</NavLink>
+              <NavLink to="/orders">Orders</NavLink>
+              <NavLink to="/cart" className="cart">
+                <span className="count">{totalQuantity}</span>
+                <i className="material-icons">
+                  <AiOutlineShoppingCart />
+                </i>
+              </NavLink>
+            </div>
+            <div>
+              <NavLink to="/userprofile">User Profile</NavLink>
+              <NavLink onClick={handleLogOut} to="/">
+                Sign Out
+              </NavLink>
+            </div>
           </div>
         </nav>
       )

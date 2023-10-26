@@ -24,6 +24,7 @@ import AddCatgeory from "./Components/AddCategory"
 import { useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
 import Category from "./Components/Category"
+import CategoryProducts from "./Components/CategoryProducts"
 
 function App() {
   const navigate = useNavigate()
@@ -131,7 +132,7 @@ function App() {
     Swal.fire({
       position: "center",
       icon: "success",
-      title: "Your work has been saved",
+      title: "paid successfully",
       showConfirmButton: false,
       background: "black",
       color: "white",
@@ -212,7 +213,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/userprofile" element={<Userprofile user={user} />} />
           <Route path="/event" element={<Event user={user} />} />
-          <Route path="/showevents" element={<ShowEvent />} />
+          <Route path="/showevents" element={<ShowEvent user={user} />} />
 
           <Route
             path="/passwordchange"
