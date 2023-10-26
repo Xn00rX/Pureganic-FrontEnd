@@ -1,18 +1,26 @@
 import { NavLink } from "react-router-dom"
 import { AiOutlineShoppingCart } from "react-icons/Ai"
+import logo from "../images/logo.png"
 import { useState, useEffect } from "react"
 import axios from "axios"
 import "../App.css"
 
 const Navbar = ({ user, userType, handleLogOut, totalQuantity }) => {
+  const imageStyle = {
+    width: "200px",
+    height: "43px",
+  }
   console.log(user)
+  console.log(userType)
   if (user) {
     if (userType === "buyer") {
       return (
         <nav className="Navbar">
           <div>
-            <NavLink to="/"> Home </NavLink>
-            <NavLink to="/api/products">Products</NavLink>
+            <NavLink to="/">
+              <img src={logo} style={imageStyle} />
+            </NavLink>
+            <NavLink to="/products">Products</NavLink>
             <NavLink to="/showevents">Explore Events</NavLink>
             <NavLink to="/orders">Orders</NavLink>
             <NavLink to="/cart" className="cart">
@@ -32,9 +40,11 @@ const Navbar = ({ user, userType, handleLogOut, totalQuantity }) => {
       return (
         <nav className="Navbar">
           <div>
-            <NavLink to="/"> Home </NavLink>
-            <NavLink to="/api/products">Products</NavLink>
-            <NavLink to="/showevents">Explore Events</NavLink>
+            <NavLink to="/">
+              <img src={logo} style={imageStyle} />
+            </NavLink>{" "}
+            {/* <NavLink to="/api/products">Products</NavLink> */}
+            {/* <NavLink to="/showevents">Explore Events</NavLink> */}
             <NavLink to="/addproduct"> Add Product </NavLink>
             <NavLink to="/addcategory"> Add Category </NavLink>
             <NavLink to="/event">Event</NavLink>
@@ -58,8 +68,10 @@ const Navbar = ({ user, userType, handleLogOut, totalQuantity }) => {
   } else {
     return (
       <nav className="Navbar">
-        <NavLink to="/"> Home </NavLink>
-        <NavLink to="api/products">Products</NavLink>
+        <NavLink to="/">
+          <img src={logo} style={imageStyle} />
+        </NavLink>{" "}
+        <NavLink to="/products">Products</NavLink>
         <NavLink to="/showevents">Explore Events</NavLink>
         <NavLink to="/signin"> Login </NavLink>
         <NavLink to="/register"> Register </NavLink>

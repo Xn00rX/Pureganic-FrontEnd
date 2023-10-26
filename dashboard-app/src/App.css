@@ -1,35 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300&display=swap');
+
+
 .main{
 height:100vh;
 margin:0;
 padding: 0;
-
 }
+
+/* Navbar starts here */
 .Navbar {
-  background-color: #052500;
   color: #fff;
   padding: 10px;
+  font-family: Urbanist;
+  font-weight: 100;
+  position: absolute;
+  width: max-content;
+  
 }
-
 
 .Navbar a {
   text-decoration: none;
   color: #fff;
   margin-right: 15px;
-  font-weight: bold;
 }
-
 
 .Navbar a:hover {
-  color: #f00;
+  color: #4AD016;
 }
 
-
+/* 
 .myForms {
   width: 70%;
   display: block;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 .Home {
   display: flex;
   flex-direction: column;
@@ -38,7 +46,9 @@ padding: 0;
   height: 100vh; 
   background-color: #f0f0f0; 
 }
-.form {
+
+
+/* .form {
   max-width: 400px;
   margin: 0 auto;
   padding: 20px;
@@ -69,13 +79,13 @@ padding: 0;
 
 .form button[type="submit"]:hover {
   background-color: #0056b3;
-}
+} */
 
-.Home button {
+/* .Home button {
   margin: 10px; 
   padding: 10px 20px; 
   font-size: 16px;
-}
+} */
 
 .cart {
   position: relative;
@@ -98,7 +108,7 @@ padding: 0;
     z-index: 2;
     font-size: 11px;
     border-radius: 50%;
-    background: #d60b28;
+    background: #4AD016;
     width: 16px;
     height: 16px;
     line-height:16px;
@@ -116,12 +126,376 @@ padding: 0;
   height: 80vh;
 }
 
+/* Homepage starts here */
 
 .Home {
-  background: url("https://i.imgur.com/7BdhGhO.jpg") no-repeat; background-size: cover;
+  background: url("https://i.postimg.cc/7hNdYBwY/bg1.jpg") no-repeat; background-size: cover;
   min-width: 100%;
   min-height: 100%;
 }
 
 
+/* Products Page starts here */
+.ProductList {
+  background-color: #052500;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: -1;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  height: 100%;
+   
+}
 
+.productContainer {
+  font-family: Urbanist;
+  color: white;
+  width:max-content;
+  background-color: rgba(255, 255, 255, 0.1); 
+  text-align: center;
+  border-radius: 11px;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  padding-bottom: 3%;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-bottom: 10%;
+}
+.producttitle {
+  font-weight: 600;
+}
+.productContainer a  {
+  text-decoration: none;
+  color: white;
+}
+
+
+.productContainer:hover {
+  transform: scale(1.2);
+}
+
+.ProductContainerParent {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.myBtns {
+  border-radius: 18px !important;
+  color: white !important;
+  border: #4AD016;
+}
+
+.myBtns:hover {
+  
+  color: white !important;
+  background-color: #4AD016 !important;
+  
+}
+
+.searchinput {
+  display: block !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  margin-bottom: 5% !important;
+}
+
+.ProductListHeading {
+  display: block !important;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  margin-bottom: 5% !important;
+  font-family: Amatic SC;
+  color: wheat;
+  width: 39%;
+  text-align: center;
+  font-size: 50px;
+  padding-top: 10%;
+}
+
+/* Login Page starts here */
+.LoginPage {
+  background-color: #052500;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: -1;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+
+}
+
+.addph {
+  font-family: Urbanist;
+  color: white;
+}
+
+.RegPage {
+  background-color: #052500;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: -1;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  height: 130vh;
+   
+}
+
+.LoginParentHide {
+  background-color: #052500;
+  padding-top: 7%;
+}
+
+.LoginParent {
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  background-color: rgba(255, 255, 255, 0.1); 
+  width: max-content;
+  border-radius: 11px;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  margin-bottom: 5% !important;
+  
+}
+
+.UserParent {
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  background-color: rgba(255, 255, 255, 0.1); 
+  width: max-content;
+  border-radius: 11px;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  margin-bottom: 5% !important;
+  padding: 6%;
+  justify-content: center;
+  text-align: left;
+  
+}
+
+.RegParent {
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  background-color: rgba(255, 255, 255, 0.1); 
+  width: max-content;
+  border-radius: 11px;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  margin-bottom: 5% !important;
+  
+  
+  
+}
+
+.LoginInfo {
+  color: white;
+  width: 400px;
+  padding-left: 3%;
+  padding-right: 3%;
+
+
+}
+
+.plantgif {
+  color: white;
+  width: max-content;
+  background-color: white;
+}
+
+.myInput {
+  background-color: rgba(255, 255, 255, 0.1) !important;; 
+  border-radius: 18px !important;
+  color: white !important;
+  border: 1px solid white !important;
+
+}
+
+.LoginHeading {
+  font-family:  Urbanist;
+  font-weight: 600;
+}
+
+.changeColor {
+  color:#4AD016;
+}
+
+.HomeHeading {
+  font-family: Urbanist;
+  font-weight: 700;
+  color: white;
+  font-size: 60px;
+  line-height: 100%;
+}
+
+.homeParagraph {
+  color: white;
+  font-family: Urbanist;
+  font-weight: 300;
+  font-size: 20px;
+  width: 80%;
+}
+.HomeParent {
+  width: 45%;
+  margin-right: auto;
+  margin-left: 5%;
+  margin-bottom: 17%;
+}
+.hpbtn {
+  border-radius: 18px !important;
+  color: white !important;
+  border: #4AD016 !important;
+  background-color: #4AD016 !important;
+  font-size: 17px !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+ 
+}
+
+.hpbtn:hover {
+  background-color: #4bd01600 !important;
+  border: #4AD016 solid 1px !important;
+}
+
+.ProductDetails {
+  background-color: #052500;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: -1;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  height: 100vh;
+   
+}
+
+.ProductDetailsParent {
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  background-color: rgba(255, 255, 255, 0.1); 
+  width: 60%;
+  border-radius: 11px;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  margin-bottom: 5% !important;
+
+}
+.ProductInfoDisplay{
+  font-family: Urbanist;
+  color: white;
+  width: 40%;
+  margin-top: 8%;
+}
+
+.ProductInfoDisplay h2{
+  font-weight: 600;
+}
+/* .productImageDisplay{
+  
+
+} */
+.productImageDisplay:hover{
+  transform: scale(1.1);
+
+}
+
+/* Cart Page Starts here */
+
+.cartcont {
+  display: flex;
+  font-family: Urbanist;
+  color: white;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+  background-color: rgba(255, 255, 255, 0.1); 
+  width: 25%;
+  border-radius: 11px;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  margin-bottom: 5% !important;
+  justify-content:center;
+  text-align: center;
+  padding: 5%;
+ 
+}
+
+.cartcont h1 {
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.cartcont h3 {
+  font-size: 25px;
+}
+
+
+.cartinfo {
+  width: max-content
+  
+}
+
+.carttotal {
+  font-family: Urbanist;
+  color: white;
+  width: 25%;
+  margin-right: auto !important;
+  margin-left: auto !important;
+  justify-content:center;
+
+}
+.carttotal h1 {
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.ordercard {
+  font-family: Urbanist;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19) !important;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2%;
+  background-color: rgba(255, 255, 255, 0.1) !important ; 
+  width: 60%;
+}
+
+.CartPage {
+  background-color: #052500;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: -1;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+  height: 130vh;
+   
+}
+
+td {
+  width: 150vh;
+
+}
+
+th {
+  width: 150vh;
+}
+
+.updateH {
+  font-family: Urbanist;
+  color: white;
+}
+
+.userpage {
+  color: white;
+  font-family: Urbanist;
+
+}

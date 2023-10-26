@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@contentful/f36-components": "^4.52.3",
     "@reach/combobox": "^0.18.0",
     "@react-google-maps/api": "^2.19.2",
     "axios": "^1.5.1",

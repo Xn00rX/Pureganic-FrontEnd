@@ -61,34 +61,42 @@ const PasswordChange = ({ user }) => {
   }
 
   return (
-    <div>
-      <div id="recaptcha-container"></div>
-      {isOTPVerified ? (
-        <div>
-          <label>Current Password:</label>
-          <input
-            type="password"
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-          />
-          <label>New Password:</label>
-          <input
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-          />
-          <label>Confirm New Password:</label>
-          <input
-            type="password"
-            value={confirmNewPassword}
-            onChange={(e) => setConfirmNewPassword(e.target.value)}
-          />
-          <div style={{ color: 'red' }}>{error}</div>
-          <button onClick={handleUpdatePassword}>Update Password</button>
-        </div>
-      ) : (
-        <button onClick={handleVerifyOTP}>Verify OTP</button>
-      )}
+    <div className="LoginPage">
+      <div className="LoginParentHide"></div>
+      <div className="LoginParent">
+        <div id="recaptcha-container"></div>
+        {isOTPVerified ? (
+          <div>
+            <label>Current Password:</label>
+            <input
+              type="password"
+              value={currentPassword}
+              onChange={(e) => setCurrentPassword(e.target.value)}
+            />
+            <label>New Password:</label>
+            <input
+              type="password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+            />
+            <label>Confirm New Password:</label>
+            <input
+              type="password"
+              value={confirmNewPassword}
+              onChange={(e) => setConfirmNewPassword(e.target.value)}
+            />
+            <div style={{ color: 'red' }}>{error}</div>
+            <button onClick={handleUpdatePassword}>Update Password</button>
+          </div>
+        ) : (
+          <button
+            className="btn btn-outline-success myBtns"
+            onClick={handleVerifyOTP}
+          >
+            Verify OTP
+          </button>
+        )}
+      </div>
     </div>
   )
 }

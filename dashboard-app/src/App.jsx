@@ -1,6 +1,5 @@
 import { useState } from "react"
 import { Route, Routes } from "react-router-dom"
-import "./App.css"
 import Navbar from "./Components/Navbar"
 import Home from "./Pages/Home"
 import ProductList from "./Pages/Productlist"
@@ -24,6 +23,7 @@ import UpdateProduct from "./Pages/UpdateProduct"
 import AddCatgeory from "./Components/AddCategory"
 import { useNavigate } from "react-router-dom"
 import Swal from "sweetalert2"
+import Category from "./Components/Category"
 
 function App() {
   const navigate = useNavigate()
@@ -74,7 +74,7 @@ function App() {
     const response = await axios.get(`http://localhost:4000/cart/${user.id}`)
     console.log("my id after ", user.id)
     if (response) {
-      console.log("testt  ", response.data.cartProducts)
+      // console.log('testt  ', response.data.cartProducts)
       setcart(response.data.cartProducts)
       test(response.data.cartProducts)
     } else {
@@ -165,8 +165,13 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route
-            path="/api/products"
+            path="/products"
             element={<ProductList user={user} handleClick={handleClick} />}
+          />
+          <Route path="/categories" element={<Category user={user} />} />
+          <Route
+            path="/categoriesp"
+            element={<CategoryProducts user={user} />}
           />
           <Route path="/addproduct" element={<AddProduct user={user} />} />
           <Route
@@ -215,7 +220,6 @@ function App() {
           />
         </Routes>
       </main>
-      <Footer></Footer>
     </div>
   )
 }
