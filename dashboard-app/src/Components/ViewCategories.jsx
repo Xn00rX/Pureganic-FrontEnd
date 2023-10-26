@@ -14,7 +14,7 @@ const ViewCategories = ({ user }) => {
 
   useEffect(() => {
     getCategories()
-  }, [deletedCategory])
+  }, [])
 
   const { category_id } = useParams()
   const deleteCategory = (category_id) => {

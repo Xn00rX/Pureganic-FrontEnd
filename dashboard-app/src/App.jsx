@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import Home from './Pages/Home'
 import ProductList from './Pages/Productlist'
+import Category from './Components/Category'
 import Cart from './Pages/Cart'
 import AddProduct from './Components/AddProduct'
 import Login from './Pages/Login'
@@ -19,6 +20,7 @@ import ShowEvent from './Pages/ShowEvent'
 import ViewProducts from './Components/ViewProducts'
 import ProductDetails from './Pages/ProductDetails'
 import ViewCategories from './Components/ViewCategories'
+import CategoryProducts from './Components/CategoryProducts'
 import UpdateProduct from './Pages/UpdateProduct'
 import AddCatgeory from './Components/AddCategory'
 import { useNavigate } from 'react-router-dom'
@@ -166,6 +168,11 @@ function App() {
           <Route
             path="/products"
             element={<ProductList user={user} handleClick={handleClick} />}
+          />
+          <Route path="/categories" element={<Category user={user} />} />
+          <Route
+            path="/categoriesp"
+            element={<CategoryProducts user={user} />}
           />
           <Route path="/addproduct" element={<AddProduct user={user} />} />
           <Route
