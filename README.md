@@ -15,3 +15,6 @@ Pureagnic is an innovative e-commerce platform designed exclusively to connect f
 
 [Pureaganic Trello Board](https://trello.com/b/9nbbCyA3/pureaganic)
 
+# Componenet Digram
+![Untitled Diagram drawio](https://github.com/Xn00rX/Pureganic-FrontEnd/assets/147029832/ee0cbb15-c50b-4035-966c-d90dda736815)
+
